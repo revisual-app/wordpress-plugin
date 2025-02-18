@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "revisual/wp-plugin",
+	"version": "0.1.0",
+	"title": "Revisual",
+	"category": "widgets",
+	"icon": "/wp-content/plugins/revisual/assets/icon.svg",
+	"description": "Insert Revisual widget",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "revisual",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php",
+	"attributes": {
+		"widgetType": {
+			"type": "string",
+			"default": ""
+		},
+		"uuid": {
+			"type": "string",
+			"default": ""
+		},
+		"template": {
+			"type": "string",
+			"default": ""
+		},
+		"widgetSlug": {
+			"type": "string",
+			"default": ""
+		},
+		"iframe": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}
