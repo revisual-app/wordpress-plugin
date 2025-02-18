@@ -1,19 +1,22 @@
-# WordPress plugin dor Revisual And DC
+# WordPress plugin for Revisual
+
+[Revisual](https://revisual.co) - Streamline, Sync, and Share Your Events Seamlessly
 
 ## Plugin Objectives
-- Install the loader script on WordPress page (frontend).
-- Install the alerts script on WordPress page (frontend).
-- Support revisual/dc short codes
-- List all the short codes in the plugin page
-- Introduce build block for easy widget embedding.
+- ✅ Install the loader script on WordPress page (frontend).
+- ✅ Install the alerts script on WordPress page (frontend).
+- ✅ Support revisual/dc short codes
+- ✅ List all the short codes in the plugin page
+- ✅ Introduce build block for easy widget embedding.
 
 ## Setup
 It requires docker and npm running on the host machine.
 
 1. [Install wp-env tool](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/#installation)
 2. Clone the repository
-3. Open `plugin/revisual` directory in the terminal
+3. Open repository root directory in the terminal
 3. Run `npm install`
+4. Run `composer install`
 4. Run `wp-env start`
 5. Run `npm start` to start the development compiler.
 6. Open `http://localhost:8889` in the browser. Port may be different, check the output of the `wp-env start` command. Login with admin/password.
@@ -31,11 +34,11 @@ PHP code starts execution in `plugin/revisual/revisual.php`. All PHP code should
 ### Plugin admin page
 
 Admin page is built using React and Webpack. The entry point is `plugin/revisual/index.js`. This index.js is a bootstrap
-file that registers the plugin block, its sidebar panel (`src/blockEditor`). Also, an app/component that 
+file that registers the plugin block, its sidebar panel (`src/blockEditor`). Also, an app/component that
 renders the plugin settings page (`src/adminPanel`).
 
 Both of these modules (block and settings page) share reducers, actions and hooks. The common components, eventually, can land into
-`src/commonComponents` directory. 
+`src/commonComponents` directory.
 
 ### WP version
 WP version is specified in .wp-env.json file. The lowest version supported is `6.2.6`. To test with newer version of WP,
@@ -44,7 +47,7 @@ After changing version, run `wp-env stop` and `wp-env start` again. In case you 
 You can learn its location by executing: `wp-env install-path`, then simply `rm -rf` the cache folder.
 
 ## Production
-Production build is created using `npm run build`. This command creates a `build` directory in the plugin root. 
+Production build is created using `npm run build`. This command creates a `build` directory in the plugin root.
 If you run this command, and go back to `npm start`, your build block may not work properly. Remove the files in the `build` directory
 and re-run `npm start` to return to development mode.
 
