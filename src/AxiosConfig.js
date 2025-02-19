@@ -1,12 +1,13 @@
 /**
  * Created by piotr.pozniak@thebeaverhead.com on 20/08/2018.
  */
+import appConfig from "./config/appConfig";
 
 export default class AxiosConfig {
 	static apiKey = null;
 
 	static _config = {
-		baseURL: "http://localhost:81", //process.env.API_ADDRESS,
+		baseURL: appConfig.appUrl,
 		headers: {
 			Accept: "application/json, text/javascript, /; q=0.01",
 			"Content-Type": "application/json",
@@ -14,7 +15,7 @@ export default class AxiosConfig {
 		},
 	};
 
-	static endpointAddress = "http://localhost:81/api4"; //process.env.API_ADDRESS;
+	static endpointAddress = `${appConfig.appUrl}/api4`;
 
 	/**
 	 *
