@@ -13,10 +13,9 @@ export const attachLoaderScript = (dom, callback = () => {}) => {
 	}
 
 	const script = document.createElement("script");
-	script.src = "http://localhost:81/widgets/loader.min.js";
-	// "https://9e03-2a0d-3344-3363-5d10-f002-66b8-7803-e275.ngrok-free.app/widgets/loader.min.js";
+	script.src = appConfig.loaderScriptUrl;
 	script.id = "dce-embeddable-script-js";
-	script.dataset.widgetsEndpoint = appConfig.appUrl; //"http://localhost:81";
+	script.dataset.widgetsEndpoint = appConfig.appUrl;
 	script.onload = callback;
 	dom.appendChild(script);
 };

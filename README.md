@@ -26,14 +26,14 @@ It requires docker and npm running on the host machine.
 ## Development
 
 ### Public assets
-Public assets such as images, CSS, and JS files should be placed in the `plugins/revisual/public/`directory.
+Public assets such as images, CSS, and JS files should be placed in the `public/`directory.
 
 ### Backend/PHP
-PHP code starts execution in `plugin/revisual/revisual.php`. All PHP code should be placed in the `plugin/revisual/includes` directory.
+PHP code starts execution in `revisual.php`. All PHP code should be placed in the `includes/` directory.
 
 ### Plugin admin page
 
-Admin page is built using React and Webpack. The entry point is `plugin/revisual/index.js`. This index.js is a bootstrap
+Admin page is built using React and Webpack. The entry point is `src/index.js`. This index.js is a bootstrap
 file that registers the plugin block, its sidebar panel (`src/blockEditor`). Also, an app/component that
 renders the plugin settings page (`src/adminPanel`).
 
