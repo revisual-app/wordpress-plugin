@@ -1,5 +1,8 @@
 {
 	"core": "WordPress/WordPress#6.7",
 	"plugins": ["."],
-	"phpVersion": "7.2"
+	"phpVersion": "7.2",
+	"mappings": {
+		"wp-content/plugins/revisual": "./"
+	}
 }

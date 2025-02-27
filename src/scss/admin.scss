@@ -38,8 +38,8 @@
 .rev--welcome-container {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
-	align-items: center;
+	//justify-content: center;
+	align-items: stretch;
 	gap: 1em;
 
 }
@@ -67,6 +67,10 @@
 }
 
 
+.rev--welcome-card_login {
+	height: 100%;
+
+}
 .rev--welcome-card_login .components-card-body {
 	min-height: 80vh;
 	display: flex;
@@ -86,6 +90,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	height: 100%
 }
 
 .rev--welcome-card_login-heading img {

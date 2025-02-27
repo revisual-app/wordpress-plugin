@@ -25,7 +25,7 @@ const WelcomePage = (props) => {
 		return `${
 			appConfig.appUrl
 		}/register?ref=wp-plugin&redirect=${encodeURIComponent(
-			wpSettings.model.authUrl,
+			wpSettings.model.authUrl
 		)}`;
 	}, [wpSettings.model.authUrl]);
 

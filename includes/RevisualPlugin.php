@@ -97,7 +97,7 @@ class RevisualPlugin {
 		$template   = $atts['template'];
 		$iframe     = $atts['iframe'];
 
-		include REV_REV_PLUGIN_SRC . '/views/shortcode.php';
+		include REVISUAL_PLUGIN_SRC . '/views/shortcode.php';
 
 		return ob_get_clean();
 	}
