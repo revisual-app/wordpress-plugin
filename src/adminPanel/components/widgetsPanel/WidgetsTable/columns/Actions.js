@@ -5,7 +5,7 @@
 import React from "react";
 import { Button, DropdownMenu, Flex } from "@wordpress/components";
 import appConfig from "../../../../../config/appConfig";
-import ThreeDotsHorizontal from "../../../icons/ThreeDotsHorizontal";
+import { ReactComponent as ThreeDotsHorizontal } from "../../../../../icons/threeDotsHorizontal.svg";
 import { useCallback } from "@wordpress/element";
 import {
 	copyTextToClipboard,
@@ -26,10 +26,10 @@ const Actions = ({ row }) => {
 	 *
 	 * @type {(function(): void)|*}
 	 */
-	const onOpenInApp = useCallback(() => {
+	const onOpenInApp = useCallback((e) => {
 		window.open(
-			`${appConfig.appUrl}/${widgetType}/${row.uuid}`,
-			`_edit-${row.uuid}`,
+			`${appConfig.appUrl}/${row.widget_type}/${row.uuid}`,
+			`_edit-${row.uuid}`
 		);
 	}, []);
 
@@ -38,8 +38,8 @@ const Actions = ({ row }) => {
 	 * @type {(function(): void)|*}
 	 */
 	const onCopyShareableUrl = useCallback(() => {
-		copyTextToClipboard(`${appConfig.appUrl}/${widgetType}/${row.uuid}`);
-		toast(`${ucFirst(widgetType)}'s link copied to clipboard.`);
+		copyTextToClipboard(`${appConfig.appUrl}/${row.widget_type}/${row.uuid}`);
+		toast(`${ucFirst(row.widget_type)}'s link copied to clipboard.`);
 	}, []);
 
 	return (
@@ -60,7 +60,8 @@ const Actions = ({ row }) => {
 						title: "Copy shareable URL",
 					},
 				]}
-				icon={ThreeDotsHorizontal}
+				icon={<ThreeDotsHorizontal width={15} />}
+				// icon
 				label="Widget actions."
 			/>
 		</Flex>

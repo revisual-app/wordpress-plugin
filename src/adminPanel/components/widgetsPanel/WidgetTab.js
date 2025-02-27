@@ -28,6 +28,7 @@ const ComponentsTabsMapping = {
 	["published"]: PublishedWidgetsTab,
 	["unavailable"]: UnavailableWidgetsTab,
 };
+
 const WidgetTab = (props) => {
 	const onTabChange = useCallback((tab) => {}, []);
 	const [currentTab, setCurrentTab] = useState();
@@ -43,7 +44,9 @@ const WidgetTab = (props) => {
 
 	const tabs = useMemo(() => {
 		return AvailableTabs.map((tab) => {
-			const widgetsCount = widgets.collection.filter(tab.filter).length;
+			const widgetsCount = widgets.collection
+				.filter(tab.filter)
+				.filter((i) => i.widget_type === props.name).length;
 
 			return {
 				...tab,
@@ -85,7 +88,7 @@ const WidgetTab = (props) => {
 				<CardBody>
 					<div className={"rev-widgets-selector-panel-header"}>
 						<h2 className={""}>{props.title}</h2>
-						<RefreshWidgetsList />
+						<RefreshWidgetsList showLabel={true} variant={"tertiary"} />
 					</div>
 
 					{content}

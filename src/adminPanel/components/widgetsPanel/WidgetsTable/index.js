@@ -3,7 +3,12 @@
  */
 
 import React from "react";
-import { IconButton, SelectControl, TextControl } from "@wordpress/components";
+import {
+	Button,
+	IconButton,
+	SelectControl,
+	TextControl,
+} from "@wordpress/components";
 import { useCallback, useMemo, useState } from "@wordpress/element";
 import { AvailableTemplates } from "../../../../consts";
 import { useWidgetsStore } from "../../../../hooks/useWidgets";
@@ -252,6 +257,7 @@ const WidgetsTable = ({
 						options={templateFilterOptions}
 						onChange={onSelectTemplate}
 					/>
+					<Button variant={"secondary"}>Clear</Button>
 				</div>
 				<div>
 					<AddNewButton widgetType={widgetType} />

@@ -24,10 +24,11 @@ const RefreshWidgetsList = ({ variant = "icon", showLabel = false }) => {
 		<Tooltip text={"Refresh widgets list"}>
 			<Button
 				variant={variant}
-				icon={RefreshIcon}
 				onClick={onClick}
-				text={showLabel && "Refresh"}
-			></Button>
+				icon={<RefreshIcon width={14} />}
+			>
+				{showLabel && "Refresh"}
+			</Button>
 		</Tooltip>
 	);
 };
