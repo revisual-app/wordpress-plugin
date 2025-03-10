@@ -121,12 +121,19 @@ class RevisualAdmin {
 			: "";
 
 		if ($requestMethod === 'GET'
-		    && wp_verify_nonce($nonce, 'revisual')
-		    && $page === 'revisual') {
+		    && $page === 'revisual'
+		    && wp_verify_nonce($nonce, 'revisual')) {
 
-			$sanitized_get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+			// Extract and sanitize only the necessary parameters
+			$allowedParams = [
+				'page'     => $page,
+				'_wpnonce' => $nonce,
+				'api_key'  => isset($_GET['api_key']) ? sanitize_text_field(wp_unslash($_GET['api_key'])) : '',
+				'revoke'   => isset($_GET['revoke']) ? rest_sanitize_boolean($_GET['revoke']) : false,
+			];
 
-			$listener = new RevisualGetListener($sanitized_get);
+
+			$listener = new RevisualGetListener($allowedParams);
 			do_action('onchangeapi', $listener->invoke());
 		}
 	}
