@@ -25,7 +25,8 @@ class RevisualGetListener {
 		}
 
 		if (isset($this->data['api_key'])) {
-			update_option(RevisualOption::getName('RevApiKey'), $this->data['api_key']);
+			$apiKey = filter_var($this->data['api_key'], FILTER_SANITIZE_STRING);
+			update_option(RevisualOption::getName('RevApiKey'), $apiKey);
 		} else if (isset($this->data['revoke'])) {
 			update_option(RevisualOption::getName('RevApiKey'), null);
 		}
@@ -51,6 +52,12 @@ class RevisualGetListener {
 
 		if (empty($getData['api_key']) && empty($getData['revoke'])) {
 			return false;
+		}
+
+		if (!empty($getData['api_key'])) {
+			if (!preg_match('/^\$2[aby]\$\d{2}\$[A-Za-z0-9\/\.]{53}$/', $getData['api_key'])) {
+				return false;
+			}
 		}
 
 
