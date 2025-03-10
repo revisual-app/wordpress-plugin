@@ -10,14 +10,15 @@ class RevisualAdmin {
 
 		wp_enqueue_style(
 			'revisual-admin-css',
-			"/wp-content/plugins/revisual/public/" . RevisualConfig::get('branding') . "/css/admin.css",
+			plugin_dir_url(REVISUAL_PLUGIN_SRC) . "/public/" . RevisualConfig::get('branding') . "/css/admin.css",
 			[],
 			RevisualConfig::get('version')
 		);
 
+
 		wp_enqueue_style(
 			'revisual-admin-settings-css',
-			"/wp-content/plugins/revisual/build/style-index.css",
+			plugin_dir_url(REVISUAL_PLUGIN_SRC) . "/build/style-index.css", 'revisual',
 			[],
 			RevisualConfig::get('version')
 		);
