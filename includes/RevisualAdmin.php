@@ -38,24 +38,7 @@ class RevisualAdmin {
 		register_deactivation_hook(REVISUAL_PLUGIN_SRC, [RevisualPluginStateManagement::class, "deactivate"]);
 		register_uninstall_hook(REVISUAL_PLUGIN_SRC, [RevisualPluginStateManagement::class, "uninstall"]);
 
-		$requestMethod = !empty($_SERVER['REQUEST_METHOD'])
-			? sanitize_text_field(wp_unslash($_SERVER['REQUEST_METHOD']))
-			: "GET";
-
-		$nonce = !empty($_GET['_wpnonce'])
-			? sanitize_text_field(wp_unslash($_GET['_wpnonce']))
-			: "";
-
-		if ($requestMethod === 'GET'
-		    && wp_verify_nonce($nonce)
-		    && isset($_GET['page'])
-		    && $_GET['page'] === 'revisual') {
-			// fire the custom action
-
-			$listener = new RevisualGetListener($_GET);
-			do_action('onchangeapi', $listener->invoke());
-		}
-
+		$this->registerAPIListener();
 
 	}
 
@@ -123,4 +106,28 @@ class RevisualAdmin {
 
 	}
 
+
+	private function registerAPIListener() {
+		$requestMethod = !empty($_SERVER['REQUEST_METHOD'])
+			? sanitize_text_field(wp_unslash($_SERVER['REQUEST_METHOD']))
+			: "GET";
+
+		$nonce = !empty($_GET['_wpnonce'])
+			? sanitize_text_field(wp_unslash($_GET['_wpnonce']))
+			: "";
+
+		$page = !empty($_GET['page'])
+			? sanitize_text_field(wp_unslash($_GET['page']))
+			: "";
+
+		if ($requestMethod === 'GET'
+		    && wp_verify_nonce($nonce, 'revisual')
+		    && $page === 'revisual') {
+
+			$sanitized_get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+
+			$listener = new RevisualGetListener($sanitized_get);
+			do_action('onchangeapi', $listener->invoke());
+		}
+	}
 }

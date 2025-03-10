@@ -13,7 +13,7 @@ class RevisualAuthentication {
 			"sitename"   => get_bloginfo("name"),
 			"adminemail" => get_bloginfo("admin_email"),
 			"version"    => get_bloginfo("version"),
-			"callback"   => wp_nonce_url(get_bloginfo("url") . "/wp-admin/admin.php?page=revisual"),
+			"callback"   => wp_nonce_url(get_bloginfo("url") . "/wp-admin/admin.php?page=revisual", 'revisual'),
 		];
 
 
@@ -33,11 +33,11 @@ class RevisualAuthentication {
 			"sitename"   => get_bloginfo("name"),
 			"adminemail" => get_bloginfo("admin_email"),
 			"version"    => get_bloginfo("version"),
-			"callback"   => wp_nonce_url(get_bloginfo("url") . "/wp-admin/admin.php?page=revisual"),
+			"callback"   => wp_nonce_url(get_bloginfo("url") . "/wp-admin/admin.php?page=revisual", 'revisual'),
 		];
 
 		return RevisualConfig::get('discardTokenUrl') . '?' . http_build_query($params);
 	}
-	
+
 
 }
