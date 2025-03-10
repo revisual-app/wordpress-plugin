@@ -14,12 +14,13 @@
  * Network:           true
  *
  * @package Revisual
+ *
  * Revisual is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
  *
- * Elementor is distributed in the hope that it will be useful,
+ * Revisual is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
@@ -80,10 +81,10 @@ function __revisual_fail_php_version() {
 function __revisual_fail_wp_version() {
 	$html_message = sprintf(
 		'<div class="error"><h3>%1$s</h3><p>%2$s</p></div>',
-		esc_html__("Revisual isn't running because WordPress is outdated.", 'elementor'),
+		esc_html__("Revisual isn't running because WordPress is outdated.", 'revisual'),
 		sprintf(
 		/* translators: %s: WordPress version. */
-			esc_html__('Update to version %s to make Revisual work', 'elementor'),
+			esc_html__('Update to version %s to make Revisual work', 'revisual'),
 			'6.3'
 		)
 	);
