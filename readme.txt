@@ -1,5 +1,5 @@
-=== Revisual - Effortless Way of Sync, Share, and Showcase Your Events ===
-Contributors:      piotrpoz
+=== Revisual ===
+Contributors:      piotrpoz, revisual
 Tags:              google, calendar, events, revisual, embed
 Tested up to:      6.7
 Stable tag:        0.2.0
