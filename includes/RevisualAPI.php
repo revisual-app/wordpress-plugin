@@ -18,16 +18,22 @@ class RevisualAPI {
 
 		register_rest_route('revisual/v1', '/disconnect', array(
 			// By using this constant we ensure that when the WP_REST_Server changes our readable endpoints will work as intended.
-			'methods'  => \WP_REST_Server::EDITABLE,
+			'methods'             => \WP_REST_Server::EDITABLE,
 			// Here we register our callback. The callback is fired when this endpoint is matched by the WP_REST_Server class.
-			'callback' => [RevisualAPI::class, "disconnect"],
+			'callback'            => [RevisualAPI::class, "disconnect"],
+			'permission_callback' => function() {
+				return current_user_can('manage_options');
+			}
 		));
 
 		register_rest_route('revisual/v1', '/settings', array(
 			// By using this constant we ensure that when the WP_REST_Server changes our readable endpoints will work as intended.
-			'methods'  => \WP_REST_Server::READABLE,
+			'methods'             => \WP_REST_Server::READABLE,
 			// Here we register our callback. The callback is fired when this endpoint is matched by the WP_REST_Server class.
-			'callback' => [RevisualAPI::class, "settings"],
+			'callback'            => [RevisualAPI::class, "settings"],
+			'permission_callback' => function() {
+				return current_user_can('manage_options');
+			}
 		));
 	}
 
