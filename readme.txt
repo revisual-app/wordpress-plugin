@@ -5,6 +5,7 @@ Tested up to:      6.7
 Stable tag:        0.2.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+Requires at least: 6.2
 
 Revisual syncs with Google Calendar and more, letting you design and embed event widgets in WordPress via shortcodes or the Gutenberg Block Editor.
 
@@ -32,6 +33,16 @@ No coding required. A one-time add of one line of script to your website enables
 3. Use the Settings->Revisual screen to configure the plugin.
 4. Connect you WP page with Revisual account.
 5. Embed your widget using shortcode or Gutenberg block.
+
+== Support ==
+You can find help desk articles and contact support at [Revisual Help Desk](https://help.revisual.io).
+
+== External services ==
+This plugin connects to Revisual API to pull your widgets information from your Revisual account.
+
+It will send your WP version, site name and URL to Revisual API to connect your WP site with your Revisual account. This data sole purpose is to create API key for your WP site. This key will be used to pull your widgets information from your Revisual account.
+
+This service is provided by "Revisual": [Terms of Service](https://revisual.io/terms-of-service) and [Privacy Policy](https://revisual.io/privacy).
 
 == Frequently Asked Questions ==
 
