@@ -66,8 +66,6 @@ Yes! Revisual widget builder allows you to customize the look of your widget. Yo
 = 0.2.0 =
 * Initial release of the Revisual plugin
 
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
+== Source Code / Development ==
+The source code for this plugin is available on GitHub. You can review the source code and contribute to the project at the following link:
+https://github.com/revisual-app/wordpress-plugin

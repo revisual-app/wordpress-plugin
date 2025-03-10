@@ -35,6 +35,7 @@
 		"includes",
 		"public",
 		"vendor",
+		"src",
 		"*.php",
 		"*.css",
 		"*.js",
