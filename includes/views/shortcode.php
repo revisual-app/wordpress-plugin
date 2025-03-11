@@ -1,4 +1,8 @@
 <?php
+
+if (!defined('ABSPATH')) {
+	exit;
+}
 /**
  * @var string $widgetType
  * @var string $widgetId
