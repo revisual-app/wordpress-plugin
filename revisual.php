@@ -34,9 +34,9 @@ if (!defined('ABSPATH')) {
 
 
 if (!version_compare(PHP_VERSION, '7.2', '>=')) {
-	add_action('admin_notices', '__revisual_fail_php_version');
+	add_action('admin_notices', 'revisual_fail_php_version');
 } elseif (!version_compare(get_bloginfo('version'), '6.2', '>=')) {
-	add_action('admin_notices', '__revisual_fail_wp_version');
+	add_action('admin_notices', 'revisual_fail_wp_version');
 } else {
 
 	/**
@@ -48,12 +48,12 @@ if (!version_compare(PHP_VERSION, '7.2', '>=')) {
 	require 'vendor/autoload.php';
 
 
-	function runRevisualPlugin() {
+	function revisual_runRevisualPlugin() {
 		new Revisual\RevisualPlugin();
 	}
 
 	add_action('wp_loaded', function() {
-		runRevisualPlugin();
+		revisual_runRevisualPlugin();
 	});
 
 }
@@ -61,7 +61,7 @@ if (!version_compare(PHP_VERSION, '7.2', '>=')) {
 /**
  * @return void
  */
-function __revisual_fail_php_version() {
+function revisual_fail_php_version() {
 	$html_message = sprintf(
 		'<div class="error"><h3>%1$s</h3><p>%2$s </p></div>',
 		esc_html__("Revisual isn't running because PHP is outdated.", 'revisual'),
@@ -78,7 +78,7 @@ function __revisual_fail_php_version() {
 /**
  * @return void
  */
-function __revisual_fail_wp_version() {
+function revisual_fail_wp_version() {
 	$html_message = sprintf(
 		'<div class="error"><h3>%1$s</h3><p>%2$s</p></div>',
 		esc_html__("Revisual isn't running because WordPress is outdated.", 'revisual'),
