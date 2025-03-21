@@ -21,8 +21,8 @@ jobs:
       
       - name: Setup PHP & Install Composer
         run: |
-          apt-get update
-          apt-get install -y php-cli unzip
+          sudo apt-get update
+          sudo apt-get install -y php-cli unzip
           curl -sS https://getcomposer.org/installer | php
           sudo mv composer.phar /usr/local/bin/composer
 
