@@ -1,0 +1,67 @@
+name: Deploy to WordPress SVN
+
+on:
+  push:
+    branches:
+      - main 
+      
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 21 
+
+      
+      - name: Setup PHP & Install Composer
+        run: |
+          apt-get update
+          apt-get install -y php-cli unzip
+          curl -sS https://getcomposer.org/installer | php
+          sudo mv composer.phar /usr/local/bin/composer
+
+      - name: Install PHP Dependencies
+        run: composer install --no-dev --prefer-dist
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build React app
+        run: npm run build
+
+      - name: Build bundle
+        run: npm run plugin-zip
+
+      - name: Get Version from package.json
+        id: get_version
+        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+
+      - name: Checkout WordPress SVN Repository
+        run: svn checkout --non-interactive --trust-server-cert https://plugins.svn.wordpress.org/revisual svn-dir
+
+      - name: Extract Plugin Zip to SVN trunk
+        run: |
+          rm -rf svn-dir/trunk/*
+          unzip revisual.zip -d svn-dir/trunk/
+
+      - name: Extract Plugin Zip to SVN tags/${{ env.VERSION }}
+        run: |
+          mkdir -p svn-dir/tags/${{ env.VERSION }}
+          unzip revisual.zip -d svn-dir/tags/${{ env.VERSION }}/
+
+      - name: Copy assets files
+        run: cp assets/* svn-dir/assets/
+
+      - name: Commit and Push to SVN
+        run: |
+          cd svn-dir
+          svn add --force trunk/* tags/${{ env.VERSION }}/* assets/*
+          svn commit -m "Deploying version ${{ env.VERSION }}" --username ${{ secrets.SVN_USERNAME }} --password ${{ secrets.SVN_PASSWORD }} --non-interactive
+
+  
