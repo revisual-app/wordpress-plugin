@@ -47,14 +47,15 @@ jobs:
           rm -rf svn-dir/trunk/*
           unzip revisual.zip -d svn-dir/trunk/
 
-      - name: Extract Plugin Zip to SVN tags/${{ env.VERSION }}
-        run: |
-          mkdir -p svn-dir/tags/${{ env.VERSION }}
-          unzip revisual.zip -d svn-dir/tags/${{ env.VERSION }}/
-
       - name: Copy assets files
         run: cp assets/* svn-dir/assets/
 
+      - name: Tag new version
+        run: |
+          cd svn-dir 
+          svn cp trunk tags/${{ env.VERSION }}
+
+      
       - name: Commit and Push to SVN
         run: |
           cd svn-dir
