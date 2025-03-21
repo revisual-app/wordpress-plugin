@@ -5,7 +5,7 @@
  * Description:       Seamlessly integrate Revisual event widgets into your WordPress site. Connect your Revisual account to access and embed your event calendars or alerts using shortcodes or the Gutenberg Block Editor.
  * Requires at least: 6.2
  * Requires PHP:      7.2
- * Version:           0.2.1
+ * Version:           0.2.2
  * Author:            Revisual
  * Author URI         https://revisual.io/?utm_source=wp-plugin&utm_medium=plugin-page&utm_campaign=wp-plugin
  * License:           GPL-2.0-or-later
