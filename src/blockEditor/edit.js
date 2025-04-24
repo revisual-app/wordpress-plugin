@@ -28,7 +28,6 @@ import WidgetPreview from "./WidgetPreview";
 import { attachLoaderScript, hasWidgetSelected } from "../utils";
 import SettingsPanel from "./SettingsPanel";
 import CanvasPlaceholder from "./CanvasPlaceholder";
-import { WT } from "../consts";
 import NoWidgetsPlaceholder from "./NoWidgetsPlaceholder";
 
 /**
@@ -59,14 +58,10 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 			window.document.head;
 
 		if (dom) {
-			console.log("attaching loader script");
 			attachLoaderScript(dom);
 		}
 	}, []);
 
-	useEffect(() => {
-		// console.log("attrs", attributes);
-	}, [attributes]);
 
 	useEffect(() => {
 		if (!AxiosConfig.getApiKey() && wpSettings?.model?.apiKey) {
@@ -75,11 +70,6 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 		}
 	}, [fetchWpSettings.fetchSuccess, wpSettings.model]);
 
-	useEffect(() => {
-		if (hasWidgetSelected(attributes)) {
-			// ...
-		}
-	}, [attributes]);
 
 	const widgetPreview = useMemo(
 		() =>
@@ -92,7 +82,7 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 					widgetSlug={attributes.widgetSlug}
 				/>
 			) : null,
-		[attributes.uuid]
+		[attributes.uuid, isWidgetSelected]
 	);
 
 	const initialStep =

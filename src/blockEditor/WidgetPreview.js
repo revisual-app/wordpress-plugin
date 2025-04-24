@@ -4,7 +4,8 @@
 
 import React from "react";
 import { useEffect, useRef } from "@wordpress/element";
-import { postMessageToContentWindow } from "../utils";
+import {attachLoaderScript, attachScript, postMessageToContentWindow} from "../utils";
+import appConfig from "../config/appConfig";
 
 /**
  *
@@ -25,6 +26,14 @@ const WidgetPreview = ({ widgetType, uuid, template, widgetSlug }) => {
 				widgetUUID: uuid,
 				widgetType,
 			});
+
+			const dom =
+				document.querySelector("iframe[name='editor-canvas']")?.contentWindow
+					?.document?.head ||
+				document.querySelector(".editor-canvas__iframe")?.contentWindow?.document
+					?.head ||
+				window.document.head;
+			attachScript(appConfig.calendarScriptUrl, dom, `dce-embeddable-script`);
 
 			return () => {
 				postMessageToContentWindow({

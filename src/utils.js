@@ -6,18 +6,36 @@ export const fieldName = (fieldName) => {
 	return `${appUniqueNameHash}_${fieldName}`;
 };
 
-export const attachLoaderScript = (dom, callback = () => {}) => {
-	if (document.getElementById("dce-embeddable-script-js")) {
+/**
+ *
+ * @param src
+ * @param dom
+ * @param id
+ * @param callback
+ */
+export const attachScript = (src, dom, id, callback = () => {}) => {
+	if (document.getElementById(id)) {
 		callback();
 		return;
 	}
 
 	const script = document.createElement("script");
-	script.src = appConfig.loaderScriptUrl;
-	script.id = "dce-embeddable-script-js";
+	script.src = src;
+	script.id = id;
 	script.dataset.widgetsEndpoint = appConfig.appUrl;
 	script.onload = callback;
 	dom.appendChild(script);
+};
+
+
+/**
+ *
+ * @param dom
+ * @param callback
+ */
+export const attachLoaderScript = (dom, callback = () => {}) => {
+
+	attachScript(appConfig.loaderScriptUrl, dom,"dce-embeddable-script-js", callback);
 };
 
 /**
