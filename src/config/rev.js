@@ -6,6 +6,7 @@ export const appConfig = {
 	helpdeskUrl: "https://help.revisual.io",
 	feedbackUrl: null,
 	loaderScriptUrl: "https://cdn.my.revisual.io/widgets/loader.min.js",
+	calendarScriptUrl: "https://cdn.my.revisual.io/widgets/calendar.min.js",
 	alertsScriptUrl: "https://cdn.my.revisual.io/widgets/alerts.min.js",
 };
 

@@ -1,8 +1,8 @@
 === Revisual ===
 Contributors:      piotrpoz, revisual
 Tags:              google, calendar, events, revisual, embed
-Tested up to:      6.7
-Stable tag:        0.2.2
+Tested up to:      6.8
+Stable tag:        0.2.3
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 6.2
@@ -11,13 +11,13 @@ Revisual syncs with Google Calendar and more, letting you design and embed event
 
 == Description ==
 
-Revisual makes event management effortless. Sync your Google Calendar (or other supported calendars) and instantly create stunning, shareable event widgets. Embed them seamlessly into your WordPress site using shortcodes or the Gutenberg Block Editor. Your event updates happen in real-time — no manual changes needed!
+Revisual makes it easy to manage and showcase your events. Sync your Google Calendar (or other supported calendars) and instantly create beautiful, shareable event widgets. Seamlessly embed them into your WordPress site using shortcodes or the Gutenberg Block Editor. Updates happen automatically — no manual edits needed!
 
-With built-in customization, you can match your calendar’s look to your brand, highlight key events, and improve engagement with featured events and alerts. Plus, Revisual generates shareable QR codes and hosted event pages, making it easy to promote your events beyond your website.
+Customize your calendar to match your brand, highlight key events, and boost engagement with featured events and alerts. Revisual also generates shareable QR codes and hosted event pages, helping you promote your events beyond your website.
 
-Stop manually updating events—Revisual keeps your audience informed while you focus on what matters!
+Spend less time updating and more time connecting with your audience — Revisual keeps everything up to date for you!
 
-No coding required. A one-time add of one line of script to your website enables embedding.
+Simple setup. Just add one line of script to your website to enable embedding — no coding required.
 
 == Installation ==
 

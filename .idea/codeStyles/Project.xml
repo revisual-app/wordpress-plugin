@@ -11,6 +11,8 @@
       <option name="BLANK_LINES_BEFORE_RETURN_STATEMENT" value="1" />
       <option name="KEEP_RPAREN_AND_LBRACE_ON_ONE_LINE" value="true" />
       <option name="SPACES_AROUND_VAR_WITHIN_BRACKETS" value="true" />
+      <option name="SPACE_BEFORE_UNARY_NOT" value="true" />
+      <option name="SPACE_AFTER_UNARY_NOT" value="true" />
       <option name="SPACE_BEFORE_CLOSURE_LEFT_PARENTHESIS" value="false" />
     </PHPCodeStyleSettings>
     <codeStyleSettings language="CSS">
@@ -56,6 +58,15 @@
       <option name="ALIGN_MULTILINE_FOR" value="false" />
       <option name="ALIGN_MULTILINE_BINARY_OPERATION" value="true" />
       <option name="SPACE_AROUND_UNARY_OPERATOR" value="true" />
+      <option name="SPACE_WITHIN_PARENTHESES" value="true" />
+      <option name="SPACE_WITHIN_METHOD_CALL_PARENTHESES" value="true" />
+      <option name="SPACE_WITHIN_METHOD_PARENTHESES" value="true" />
+      <option name="SPACE_WITHIN_IF_PARENTHESES" value="true" />
+      <option name="SPACE_WITHIN_WHILE_PARENTHESES" value="true" />
+      <option name="SPACE_WITHIN_FOR_PARENTHESES" value="true" />
+      <option name="SPACE_WITHIN_CATCH_PARENTHESES" value="true" />
+      <option name="SPACE_WITHIN_SWITCH_PARENTHESES" value="true" />
+      <option name="SPACE_WITHIN_ARRAY_INITIALIZER_BRACES" value="true" />
       <option name="SPACE_AFTER_TYPE_CAST" value="true" />
       <option name="METHOD_PARAMETERS_LPAREN_ON_NEXT_LINE" value="true" />
       <option name="METHOD_PARAMETERS_RPAREN_ON_NEXT_LINE" value="true" />
@@ -71,9 +82,6 @@
       <option name="WHILE_BRACE_FORCE" value="3" />
       <option name="FOR_BRACE_FORCE" value="3" />
       <indentOptions>
-        <option name="INDENT_SIZE" value="2" />
-        <option name="CONTINUATION_INDENT_SIZE" value="2" />
-        <option name="TAB_SIZE" value="2" />
         <option name="USE_TAB_CHARACTER" value="true" />
         <option name="SMART_TABS" value="true" />
       </indentOptions>
