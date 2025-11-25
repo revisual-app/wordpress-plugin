@@ -28,66 +28,67 @@
 
 // Change header with: https://developer.wordpress.org/plugins/plugin-basics/header-requirements/ options
 
-if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
 }
 
 
-if (!version_compare(PHP_VERSION, '7.2', '>=')) {
-	add_action('admin_notices', 'revisual_fail_php_version');
-} elseif (!version_compare(get_bloginfo('version'), '6.2', '>=')) {
-	add_action('admin_notices', 'revisual_fail_wp_version');
+// Dependencies check
+if ( ! version_compare( PHP_VERSION, '7.2', '>=' ) ) {
+    add_action( 'admin_notices', 'revisual_fail_php_version' );
+} elseif ( ! version_compare( get_bloginfo( 'version' ), '6.2', '>=' ) ) {
+    add_action( 'admin_notices', 'revisual_fail_wp_version' );
 } else {
 
-	/**
-	 * paths definitions
-	 */
-	define("REVISUAL_PLUGIN_PATH", plugin_dir_path(__FILE__));
-	define("REVISUAL_PLUGIN_SRC", REVISUAL_PLUGIN_PATH . "includes");
+    /**
+     * paths definitions
+     */
+    define( "REVISUAL_PLUGIN_PATH", plugin_dir_path( __FILE__ ) );
+    define( "REVISUAL_PLUGIN_SRC", REVISUAL_PLUGIN_PATH . "includes" );
 
-	require 'vendor/autoload.php';
+    require 'vendor/autoload.php';
 
 
-	function revisual_runRevisualPlugin() {
-		new Revisual\RevisualPlugin();
-	}
+    function revisual_runRevisualPlugin() {
+        new Revisual\RevisualPlugin();
+    }
 
-	add_action('wp_loaded', function() {
-		revisual_runRevisualPlugin();
-	});
-
+    add_action( 'wp_loaded', function() {
+        revisual_runRevisualPlugin();
+    } );
 }
+
 
 /**
  * @return void
  */
 function revisual_fail_php_version() {
-	$html_message = sprintf(
-		'<div class="error"><h3>%1$s</h3><p>%2$s </p></div>',
-		esc_html__("Revisual isn't running because PHP is outdated.", 'revisual'),
-		sprintf(
-		/* translators: %s: PHP version. */
-			esc_html__('Update to version %s to make Revisual work.', 'revisual'),
-			'7.4'
-		)
-	);
+    $html_message = sprintf(
+        '<div class="error"><h3>%1$s</h3><p>%2$s </p></div>',
+        esc_html__( "Revisual isn't running because PHP is outdated.", 'revisual' ),
+        sprintf(
+        /* translators: %s: PHP version. */
+            esc_html__( 'Update to version %s to make Revisual work.', 'revisual' ),
+            '7.4'
+        )
+    );
 
-	echo wp_kses_post($html_message);
+    echo wp_kses_post( $html_message );
 }
 
 /**
  * @return void
  */
 function revisual_fail_wp_version() {
-	$html_message = sprintf(
-		'<div class="error"><h3>%1$s</h3><p>%2$s</p></div>',
-		esc_html__("Revisual isn't running because WordPress is outdated.", 'revisual'),
-		sprintf(
-		/* translators: %s: WordPress version. */
-			esc_html__('Update to version %s to make Revisual work', 'revisual'),
-			'6.3'
-		)
-	);
+    $html_message = sprintf(
+        '<div class="error"><h3>%1$s</h3><p>%2$s</p></div>',
+        esc_html__( "Revisual isn't running because WordPress is outdated.", 'revisual' ),
+        sprintf(
+        /* translators: %s: WordPress version. */
+            esc_html__( 'Update to version %s to make Revisual work', 'revisual' ),
+            '6.3'
+        )
+    );
 
-	echo wp_kses_post($html_message);
+    echo wp_kses_post( $html_message );
 }

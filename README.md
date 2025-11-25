@@ -15,8 +15,7 @@ It requires docker and npm running on the host machine.
 1. [Install wp-env tool](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/#installation)
 2. Clone the repository
 3. Open repository root directory in the terminal
-3. Run `npm install`
-4. Run `composer install`
+3. Run `npm run install-deps`
 4. Run `wp-env start`
 5. Run `npm start` to start the development compiler.
 6. Open `http://localhost:8889` in the browser. Port may be different, check the output of the `wp-env start` command. Login with admin/password.

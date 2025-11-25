@@ -12,7 +12,8 @@
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start"
+		"start": "wp-scripts start",
+		"install-deps": "docker image inspect rev-wp-install-img >/dev/null 2>&1 || docker build -t rev-wp-install-img . && docker run --rm -v \"$(pwd)\":/app rev-wp-install-img"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^27.9.0"
