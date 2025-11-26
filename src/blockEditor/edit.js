@@ -98,18 +98,14 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
       <NoWidgetsPlaceholder widgetType={attributes.widgetType} />
     ) : null;
 
-  const setupStep = !hasApiKey ? (
-    <SetupMissingPlaceholder
-      setAttributes={setAttributes}
-      widgetType={attributes.widgetType}
-    />
-  ) : null;
+  const setupStep = !hasApiKey ? <SetupMissingPlaceholder /> : null;
   return (
     <>
       <SettingsPanel
         setAttributes={setAttributes}
         hasWidgets={hasWidgets}
         isLoading={widgets.fetch}
+        isRevisualSetupComplete={hasApiKey}
       />
       <div {...useBlockProps()}>
         {setupStep}

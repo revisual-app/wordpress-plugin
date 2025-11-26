@@ -1,47 +1,47 @@
 {
-	"name": "revisual",
-	"version": "0.2.3",
-	"description": "Easily embed your Revisual widgets.",
-	"author": "The WordPress Contributors",
-	"license": "GPL-2.0-or-later",
-	"main": "build/index.js",
-	"scripts": {
-		"build": "wp-scripts build",
-		"format": "wp-scripts format",
-		"lint:css": "wp-scripts lint-style",
-		"lint:js": "wp-scripts lint-js",
-		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start",
-		"install-deps": "docker image inspect rev-wp-install-img >/dev/null 2>&1 || docker build -t rev-wp-install-img . && docker run --rm -v \"$(pwd)\":/app rev-wp-install-img"
-	},
-	"devDependencies": {
-		"@wordpress/scripts": "^27.9.0"
-	},
-	"dependencies": {
-		"@reduxjs/toolkit": "^2.2.6",
-		"@wordpress/components": "^28.2.0",
-		"@wordpress/blocks": "^13.10.0",
-		"axios": "^1.7.8",
-		"js-md5": "^0.8.3",
-		"react-redux": "^9.1.2",
-		"redux-logger": "^3.0.6",
-		"redux-persist": "^6.0.0",
-		"sonner": "^1.7.1"
-	},
-	"files": [
-		"assets",
-		"build",
-		"config",
-		"includes",
-		"public",
-		"vendor",
-		"src",
-		"*.php",
-		"*.css",
-		"*.js",
-		"*.txt",
-		"*.json",
-		"*.md"
-	]
+  "name": "revisual",
+  "version": "0.2.3",
+  "description": "Easily embed your Revisual widgets.",
+  "author": "The WordPress Contributors",
+  "license": "GPL-2.0-or-later",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-zip": "wp-scripts plugin-zip",
+    "start": "wp-scripts start",
+    "install-deps": "docker image inspect rev-wp-install-img >/dev/null 2>&1 || docker build -t rev-wp-install-img . && docker run --rm -v \"$(pwd)\":/app rev-wp-install-img"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^27.9.0"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.6",
+    "@wordpress/components": "^28.2.0",
+    "@wordpress/blocks": "^13.10.0",
+    "axios": "^1.13.2",
+    "js-md5": "^0.8.3",
+    "react-redux": "^9.1.2",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "sonner": "^1.7.1"
+  },
+  "files": [
+    "assets",
+    "build",
+    "config",
+    "includes",
+    "public",
+    "vendor",
+    "src",
+    "*.php",
+    "*.css",
+    "*.js",
+    "*.txt",
+    "*.json",
+    "*.md"
+  ]
 }
