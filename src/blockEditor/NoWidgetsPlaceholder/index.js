@@ -16,30 +16,30 @@ import RefreshWidgetsList from "../../components/RefreshWidgetsList";
  * @constructor
  */
 const NoWidgetsPlaceholder = ({ widgetType }) => {
-	return (
-		<Card isRounded={false}>
-			<CardHeader>
-				<div className={"rev-block-canvas-placeholder-header"}>
-					<div className={"rev-block-canvas-placeholder-title"}>
-						<span>
-							<AppIcon width={"24"} />
-							{__("Revisual Widget", "revisual")}
-						</span>
-						<RefreshWidgetsList widgetType={widgetType} />
-					</div>
-					<div className={"rev-block-canvas-placeholder-subtitle"}>
-						Select widget which you want to display.
-					</div>
-				</div>
-			</CardHeader>
-			<CardBody>
-				<div className={"rev-block-canvas-no-widgets-container"}>
-					You have no Calendars widgets...
-					<AddNewButton widgetType={widgetType} />
-				</div>
-			</CardBody>
-		</Card>
-	);
+  return (
+    <Card isRounded={false}>
+      <CardHeader>
+        <div className={"rev-block-canvas-placeholder-header"}>
+          <div className={"rev-block-canvas-placeholder-title"}>
+            <span>
+              <AppIcon width={"24"} />
+              {__("Revisual Widget", "revisual")}
+            </span>
+            <RefreshWidgetsList widgetType={widgetType} />
+          </div>
+          <div className={"rev-block-canvas-placeholder-subtitle"}>
+            Select widget which you want to display.
+          </div>
+        </div>
+      </CardHeader>
+      <CardBody>
+        <div className={"rev-block-canvas-no-widgets-container"}>
+          You have no {widgetType.toLocaleLowerCase()} widgets...
+          <AddNewButton widgetType={widgetType} />
+        </div>
+      </CardBody>
+    </Card>
+  );
 };
 
 export default NoWidgetsPlaceholder;

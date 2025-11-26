@@ -15,6 +15,6 @@ class RevisualBlockEditor {
 	public function __construct() {
 		register_block_type(REVISUAL_PLUGIN_PATH . '/build');
 	}
-	
+
 
 }

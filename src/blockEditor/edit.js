@@ -29,6 +29,7 @@ import { attachLoaderScript, hasWidgetSelected } from "../utils";
 import SettingsPanel from "./SettingsPanel";
 import CanvasPlaceholder from "./CanvasPlaceholder";
 import NoWidgetsPlaceholder from "./NoWidgetsPlaceholder";
+import SetupMissingPlaceholder from "./SetupMissingPlaceholder";
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -39,77 +40,79 @@ import NoWidgetsPlaceholder from "./NoWidgetsPlaceholder";
  * @return {Element} Element to render.
  */
 export default function Edit({ attributes, isSelected, setAttributes }) {
-	const blockProps = useBlockProps();
-	const { widgets, fetchWidgets } = useWidgetsStore();
-	const { wpSettings, fetchWpSettings } = useWPSettingsStore();
+  const blockProps = useBlockProps();
+  const { widgets, fetchWidgets } = useWidgetsStore();
+  const { wpSettings, fetchWpSettings } = useWPSettingsStore();
 
-	const isWidgetSelected = hasWidgetSelected(attributes);
+  const isWidgetSelected = hasWidgetSelected(attributes);
 
-	const hasWidgets = widgets.collection.length ? true : false;
+  const hasApiKey = wpSettings?.model?.apiKey ? true : false;
+  const hasWidgets = widgets.collection.length ? true : false;
 
-	useEffect(() => {
-		fetchWpSettings();
+  useEffect(() => {
+    fetchWpSettings();
 
-		const dom =
-			document.querySelector("iframe[name='editor-canvas']")?.contentWindow
-				?.document?.head ||
-			document.querySelector(".editor-canvas__iframe")?.contentWindow?.document
-				?.head ||
-			window.document.head;
+    const dom =
+      document.querySelector("iframe[name='editor-canvas']")?.contentWindow
+        ?.document?.head ||
+      document.querySelector(".editor-canvas__iframe")?.contentWindow?.document
+        ?.head ||
+      window.document.head;
 
-		if (dom) {
-			attachLoaderScript(dom);
-		}
-	}, []);
+    if (dom) {
+      attachLoaderScript(dom);
+    }
+  }, []);
 
+  useEffect(() => {
+    if (!AxiosConfig.getApiKey() && wpSettings?.model?.apiKey) {
+      AxiosConfig.setApiKey(wpSettings?.model?.apiKey);
+      fetchWidgets();
+    }
+  }, [fetchWpSettings.fetchSuccess, wpSettings.model]);
 
-	useEffect(() => {
-		if (!AxiosConfig.getApiKey() && wpSettings?.model?.apiKey) {
-			AxiosConfig.setApiKey(wpSettings?.model?.apiKey);
-			fetchWidgets();
-		}
-	}, [fetchWpSettings.fetchSuccess, wpSettings.model]);
+  const widgetPreview = useMemo(
+    () =>
+      isWidgetSelected ? (
+        <WidgetPreview
+          widgetType={attributes.widgetType}
+          uuid={attributes.uuid}
+          key={`${attributes.widgetType}-${attributes.uuid}`}
+          template={attributes.template}
+          widgetSlug={attributes.widgetSlug}
+        />
+      ) : null,
+    [attributes.uuid, isWidgetSelected],
+  );
 
+  const initialStep =
+    hasApiKey && hasWidgets && !isWidgetSelected ? (
+      <CanvasPlaceholder
+        setAttributes={setAttributes}
+        widgetType={attributes.widgetType}
+      />
+    ) : null;
 
-	const widgetPreview = useMemo(
-		() =>
-			isWidgetSelected ? (
-				<WidgetPreview
-					widgetType={attributes.widgetType}
-					uuid={attributes.uuid}
-					key={`${attributes.widgetType}-${attributes.uuid}`}
-					template={attributes.template}
-					widgetSlug={attributes.widgetSlug}
-				/>
-			) : null,
-		[attributes.uuid, isWidgetSelected]
-	);
+  const noWidgetsCTA =
+    hasApiKey && !hasWidgets && !isWidgetSelected ? (
+      <NoWidgetsPlaceholder widgetType={attributes.widgetType} />
+    ) : null;
 
-	const initialStep =
-		hasWidgets && !isWidgetSelected ? (
-			<CanvasPlaceholder
-				setAttributes={setAttributes}
-				widgetType={attributes.widgetType}
-			/>
-		) : null;
-
-	const noWidgetsCTA =
-		!hasWidgets && !isWidgetSelected ? (
-			<NoWidgetsPlaceholder widgetType={attributes.widgetType} />
-		) : null;
-
-	return (
-		<>
-			<SettingsPanel
-				setAttributes={setAttributes}
-				hasWidgets={hasWidgets}
-				isLoading={widgets.fetch}
-			/>
-			<div {...useBlockProps()}>
-				{initialStep}
-				{noWidgetsCTA}
-				{widgetPreview}
-			</div>
-		</>
-	);
+  const setupStep = !hasApiKey ? <SetupMissingPlaceholder /> : null;
+  return (
+    <>
+      <SettingsPanel
+        setAttributes={setAttributes}
+        hasWidgets={hasWidgets}
+        isLoading={widgets.fetch}
+        isRevisualSetupComplete={hasApiKey}
+      />
+      <div {...useBlockProps()}>
+        {setupStep}
+        {initialStep}
+        {noWidgetsCTA}
+        {widgetPreview}
+      </div>
+    </>
+  );
 }

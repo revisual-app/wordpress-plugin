@@ -15,18 +15,18 @@ import { AvailableWidgets, WidgetsNames } from "../consts";
  * @constructor
  */
 const AddNewButton = ({ widgetType, variant = "primary" }) => {
-	const widgetConfig = AvailableWidgets.find((i) => i.name === widgetType);
+  const widgetConfig = AvailableWidgets.find((i) => i.name === widgetType);
 
-	return (
-		<Button
-			variant={variant}
-			href={appConfig.appUrl + widgetConfig.newItemUrl}
-			target={`_new_${widgetType}`}
-		>
-			Create {WidgetsNames[widgetType].singular}&nbsp;
-			<Icon icon={"external"} size={13}></Icon>
-		</Button>
-	);
+  return (
+    <Button
+      variant={variant}
+      href={appConfig.appUrl + widgetConfig.newItemUrl}
+      target={`_new_${widgetType}`}
+    >
+      Create {WidgetsNames[widgetType].singular.toLocaleLowerCase()}&nbsp;
+      <Icon icon={"external"} size={13}></Icon>
+    </Button>
+  );
 };
 
 export default AddNewButton;
