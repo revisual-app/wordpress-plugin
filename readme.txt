@@ -1,8 +1,8 @@
 === Revisual – Beautiful Google Calendar Event Widgets for WordPress ===
 Contributors:      piotrpoz, revisual
 Tags:              google, calendar, events, revisual, embed
-Tested up to:      6.8
-Stable tag:        0.2.4
+Tested up to:      6.9
+Stable tag:        0.2.5
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 6.2
@@ -210,6 +210,8 @@ Revisual updates are fully backward compatible. There are no breaking changes in
 
 
 == Changelog ==
+= 0.2.5 | 3, Dev 2025 =
+* Testing with WordPress 6.9
 
 = 0.2.4 | 25, Nov 2025 =
 * Testing with latest WP
