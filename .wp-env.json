@@ -1,8 +1,8 @@
 {
-	"core": "WordPress/WordPress#6.8",
-	"plugins": ["."],
-	"phpVersion": "7.4",
-	"mappings": {
-		"wp-content/plugins/revisual": "./"
-	}
+  "core": "WordPress/WordPress#6.9",
+  "plugins": ["."],
+  "phpVersion": "7.4",
+  "mappings": {
+    "wp-content/plugins/revisual": "./"
+  }
 }
