@@ -25,8 +25,8 @@ class RevisualGetListener {
 		}
 
 		if (isset($this->data['api_key'])) {
-			$apiKey = filter_var($this->data['api_key'], FILTER_SANITIZE_STRING);
-			update_option(RevisualOption::getName('RevApiKey'), $apiKey);
+            $apiKey = sanitize_text_field( $this->data['api_key'] );
+            update_option(RevisualOption::getName('RevApiKey'), $apiKey);
 		} else if (isset($this->data['revoke'])) {
 			update_option(RevisualOption::getName('RevApiKey'), null);
 		}
