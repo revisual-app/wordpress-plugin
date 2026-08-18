@@ -1,0 +1,355 @@
+// Welcome (disconnected) screen — Untitled UI structure, Revisual brand ramp.
+// Replaces the .rev--welcome-* / .rev-welcome-* block in src/scss/admin.scss.
+
+// Revisual brand ramp (authoritative — NOT the Untitled UI placeholder violet)
+$rev-brand-25: #fffaff;
+$rev-brand-50: #fdf6fd;
+$rev-brand-100: #f9ecfb;
+$rev-brand-200: #f2d9f5;
+$rev-brand-300: #eab8e9;
+$rev-brand-600: #b146b3;
+$rev-brand-700: #883388;
+$rev-brand-950: #40123e;
+
+// Untitled UI neutrals (literals the kit's components actually carry)
+$rev-text-primary: #101828;
+$rev-text-secondary: #344054;
+$rev-text-tertiary: #667085;
+$rev-text-quaternary: #98a2b3;
+$rev-border-primary: #d0d5dd;
+$rev-border-secondary: #eaecf0;
+$rev-surface: #ffffff;
+$rev-radius-md: 8px;
+$rev-radius-xl: 12px;
+$rev-shadow-xs: 0 1px 2px rgba(10, 13, 18, 0.05);
+
+$rev-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+sans-serif;
+
+.rev--welcome {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 600px;
+  background: $rev-surface;
+  border: 1px solid $rev-border-secondary;
+  border-radius: $rev-radius-xl;
+  box-shadow: $rev-shadow-xs;
+  overflow: hidden;
+  font-family: $rev-font;
+
+  @media screen and (max-width: 1280px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.rev--welcome-main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 48px;
+
+  @media screen and (max-width: 782px) {
+    padding: 24px;
+    gap: 24px;
+  }
+}
+
+.rev--welcome-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.rev--welcome-brand-mark {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+}
+
+.rev--welcome-brand-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: $rev-text-primary;
+}
+
+.rev--welcome-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 10px;
+  border: 1px solid $rev-border-secondary;
+  border-radius: 9999px;
+  background: #f9fafb;
+  color: $rev-text-secondary;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.rev--welcome-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: $rev-text-quaternary;
+}
+
+.rev--welcome-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 520px;
+}
+
+.rev--welcome-title {
+  margin: 0;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  color: $rev-text-primary;
+  text-wrap: pretty;
+
+  @media screen and (max-width: 782px) {
+    font-size: 30px;
+    line-height: 38px;
+    letter-spacing: 0;
+  }
+}
+
+.rev--welcome-subtitle {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: $rev-text-tertiary;
+  text-wrap: pretty;
+}
+
+.rev--welcome-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rev--welcome-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+}
+
+.rev--welcome-step-num {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid $rev-brand-200;
+  border-radius: 9999px;
+  background: $rev-brand-100;
+  color: $rev-brand-700;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.rev--welcome-step-text {
+  font-size: 14px;
+  line-height: 24px;
+  color: $rev-text-secondary;
+
+  strong {
+    font-weight: 600;
+    color: $rev-text-primary;
+  }
+}
+
+.rev--welcome-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rev--welcome-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rev--welcome-hint {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: $rev-text-tertiary;
+}
+
+// Buttons — Untitled UI md/lg with the skeuomorphic inset hairline.
+// Plain anchors, not <Button>, so wp-components styles don't override them.
+a.rev--btn,
+.rev--btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: $rev-radius-md;
+  font-family: $rev-font;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-decoration: none;
+  box-shadow: $rev-shadow-xs;
+  transition: background-color 150ms ease-out;
+}
+
+a.rev--btn_primary {
+  background: $rev-brand-600;
+  border: none;
+  color: #fff;
+  box-shadow: $rev-shadow-xs, inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+
+  &:hover,
+  &:active {
+    background: $rev-brand-700;
+    color: #fff;
+  }
+
+  &:focus {
+    color: #fff;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px $rev-brand-300;
+    outline: none;
+  }
+}
+
+a.rev--btn_secondary {
+  background: $rev-surface;
+  border: 1px solid $rev-border-primary;
+  color: $rev-text-secondary;
+
+  &:hover,
+  &:active {
+    background: #f9fafb;
+    color: $rev-text-secondary;
+  }
+
+  &:focus {
+    color: $rev-text-secondary;
+    box-shadow: 0 0 0 4px #f2f4f7;
+    outline: none;
+  }
+}
+
+// Aside — testimonial over a product shot that bleeds off the bottom-right.
+.rev--welcome-aside {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: 48px 0 0 40px;
+  overflow: hidden;
+  background: linear-gradient(180deg, $rev-brand-25 0%, $rev-brand-100 100%);
+  border-left: 1px solid $rev-brand-200;
+
+  @media screen and (max-width: 1280px) {
+    border-left: none;
+    border-top: 1px solid $rev-brand-200;
+  }
+
+  @media screen and (max-width: 782px) {
+    padding: 24px 0 0 24px;
+    gap: 24px;
+  }
+}
+
+.rev--welcome-testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0;
+  padding-right: 40px;
+
+  @media screen and (max-width: 782px) {
+    padding-right: 24px;
+  }
+}
+
+.rev--welcome-quote {
+  margin: 0;
+  font-size: 22px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: $rev-brand-950;
+  text-wrap: pretty;
+
+  @media screen and (max-width: 782px) {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+.rev--welcome-cite {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.rev--welcome-cite-who {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rev--welcome-cite-name {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: $rev-text-primary;
+}
+
+.rev--welcome-cite-role {
+  font-size: 14px;
+  line-height: 20px;
+  color: $rev-text-tertiary;
+}
+
+.rev--welcome-rating {
+  display: flex;
+  flex: none;
+  gap: 2px;
+  color: $rev-brand-600;
+
+  svg {
+    display: block;
+  }
+}
+
+.rev--welcome-shot {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  min-height: 0;
+}
+
+.rev--welcome-shot-img {
+  display: block;
+  width: 720px;
+  max-width: none;
+  height: auto;
+  border: 1px solid $rev-brand-200;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: $rev-radius-xl;
+  box-shadow: 0 -1px 2px rgba(10, 13, 18, 0.05),
+  -12px -12px 32px -8px rgba(64, 18, 62, 0.1);
+
+  @media screen and (max-width: 782px) {
+    width: 560px;
+  }
+}

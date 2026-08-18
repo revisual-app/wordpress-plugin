@@ -1,0 +1,68 @@
+// Footer — direction 2a. Replaces the `.rev--footer-container` rule in
+// src/scss/admin.scss. The old `.footer` / `.container` / `.row` /
+// `.col-md-12` / `.footer-text` markup is gone with the new Footer.js, so any
+// rules targeting those can go too (grep first — `.container` and `.row` are
+// generic enough that something else may lean on them).
+//
+// Variables ($rev-brand-700 etc.) are declared in _welcome.scss. If that block
+// sits above this one in admin.scss they're already in scope; otherwise lift
+// them to the top of the file.
+
+.rev--footer {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	flex-wrap: wrap;
+	margin-top: 20px;
+	padding: 0 4px;
+	font-family: $rev-font;
+}
+
+.rev--footer-links {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+a.rev--footer-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 500;
+	color: $rev-brand-700;
+	text-decoration: none;
+	box-shadow: none;
+	transition: color 150ms ease-out;
+
+	&:hover,
+	&:active {
+		color: $rev-brand-600;
+		text-decoration: underline;
+	}
+
+	&:focus {
+		color: $rev-brand-700;
+		border-radius: 4px;
+		box-shadow: 0 0 0 4px $rev-brand-100;
+		outline: none;
+	}
+}
+
+.rev--footer-link-icon {
+	font-size: 13px;
+	line-height: 1;
+}
+
+.rev--footer-copyright {
+	margin: 0 0 0 auto;
+	font-size: 14px;
+	line-height: 20px;
+	color: $rev-text-quaternary;
+
+	@media screen and (max-width: 782px) {
+		margin-left: 0;
+	}
+}
