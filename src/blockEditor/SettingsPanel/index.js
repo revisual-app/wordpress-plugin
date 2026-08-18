@@ -1,135 +1,165 @@
 /**
- * Created by piotr.pozniak@thebeaverhead.com on 08/07/2024
+ * Inspector sidebar — swap the embedded widget for another one.
+ *
+ * Replaces src/blockEditor/SettingsPanel/index.js + WidgetsList/*, which
+ * rendered a full-width "Create calendar", a full-width "Refresh", a one-tab
+ * TabPanel, an instruction line, and then every widget as name / template /
+ * three unstyled WP buttons (Insert, Preview, Edit) — about 120px of vertical
+ * space each, in a 280px column.
+ *
+ * Here each widget is one row: name, template, and the actions as icon buttons
+ * that appear on hover or focus. Insert stays visible because it is the reason
+ * the panel is open. Search is always on top; with a dozen calendars the old
+ * list was pure scrolling.
  */
 
 import React from "react";
-import { Button, PanelBody } from "@wordpress/components";
+import { useMemo, useState } from "@wordpress/element";
+import { PanelBody } from "@wordpress/components";
 import { InspectorControls } from "@wordpress/block-editor";
-import { useState, useCallback, useMemo } from "@wordpress/element";
-import WidgetsList from "./../WidgetsList";
-import WidgetTabsPanel from "../../adminPanel/components/WidgetTabsPanel";
-import AddNewButton from "../../components/AddNewButton";
-import { WT } from "../../consts";
-import RefreshWidgetsList from "../../components/RefreshWidgetsList";
-import InitialLoading from "../../adminPanel/components/InitialLoading";
 import { useWidgetsStore } from "../../hooks/useWidgets";
-import { useWPSettingsStore } from "../../hooks/useWPSettings";
+import { AvailableTemplates, WidgetsNames } from "../../consts";
+import { widgetsFilter } from "../../adminPanel/components/widgetsPanel/PublishedWidgetsTab";
+import RefreshWidgetsList from "../../components/RefreshWidgetsList";
+import AddNewButton from "../../components/AddNewButton";
+import appConfig from "../../config/appConfig";
+import { SearchLg, Edit01, Check } from "../../icons";
 
-/**
- *
- * @param {function} setAttributes
- * @param {boolean} hasWidgets
- * @param {boolean} isLoading
- * @param {boolean} isRevisualSetupComplete
- * @returns {Element}
- * @constructor
- */
 const SettingsPanel = ({
+  attributes = {},
   setAttributes,
-  hasWidgets,
-  isLoading,
-  isRevisualSetupComplete,
+  widgetType = "calendar",
 }) => {
-  const [widgetType, setWidgetType] = useState(WT.calendar);
-
   const { widgets } = useWidgetsStore();
-  const { wpSettings } = useWPSettingsStore();
+  const [query, setQuery] = useState("");
 
-  /**
-   *
-   * @type {(value: (((prevState: string) => string) | string)) => void}
-   */
-  const onChangeSelectField = useCallback(
-    (value) => {
-      if (widgetType === value) {
-        return;
-      }
-      setWidgetType(value);
-      setAttributes({
-        widgetType: value,
-        uuid: undefined,
-      });
-    },
-    [widgetType, setAttributes],
-  );
+  const templates = AvailableTemplates[widgetType] || [];
+  const labelOf = (value) =>
+    templates.find((i) => i.template === value)?.label || value;
 
-  /**
-   *
-   * @type {(function(*): void)|*}
-   */
-  const onWidgetSelect = useCallback(
-    (widget) => {
-      setAttributes({
-        widgetType: widget.widget_type,
-        uuid: widget.uuid,
-        template: widget.template,
-        widgetSlug: widget.slug,
-      });
-    },
-    [widgetType, setAttributes],
-  );
+  const plural = (WidgetsNames[widgetType]?.title || "widgets").toLowerCase();
 
-  const label = useMemo(() => {
-    let _label = "Select widget you want to display.";
+  // The block stores the embedded widget's id; the collection may type it
+  // differently (number vs string), so compare as strings once here.
+  const selectedUuid =
+    attributes?.uuid !== undefined && attributes?.uuid !== null
+      ? String(attributes.uuid)
+      : "";
 
-    if (isLoading) {
-      _label = <InitialLoading />;
-    } else if (!hasWidgets) {
-      _label = "There are no widgets available.";
-    }
+  const matches = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return (
+      widgets.collection
+        .filter((i) => i.widget_type === widgetType)
+        .filter(widgetsFilter)
+        .filter((i) => (q ? (i.name || "").toLowerCase().includes(q) : true))
+        // Embedded one first, so it is visible without scrolling a long list.
+        .sort((a, b) => {
+          if (!selectedUuid) {
+            return 0;
+          }
+          return (
+            (String(b.uuid) === selectedUuid) -
+            (String(a.uuid) === selectedUuid)
+          );
+        })
+    );
+  }, [widgets.collection, widgetType, query, selectedUuid]);
 
-    if (widgets.fetchError || wpSettings.fetchError) {
-      _label = (
-        <>
-          An error occurred.{" "}
-          <a href={"/wp-admin/admin.php?page=revisual"} target={"_dashboard"}>
-            Go to dashboard for more details.
-          </a>
-        </>
-      );
-    }
-
-    return <p>{_label}</p>;
-  }, [hasWidgets, isLoading, widgets.fetchError, wpSettings.fetchError]);
-
-  const content = isRevisualSetupComplete ? (
-    <>
-      <div className={"rev-panel-header"}>
-        <div className={"rev-panel-header-actions"}>
-          <AddNewButton widgetType={widgetType} variant={"secondary"} />
-          <RefreshWidgetsList variant={"secondary"} showLabel={true} />
-        </div>
-      </div>
-      <WidgetTabsPanel onTabChange={onChangeSelectField}>
-        {(tab) => (
-          <>
-            {label}
-
-            <WidgetsList widgetType={tab.name} onSelect={onWidgetSelect} />
-          </>
-        )}
-      </WidgetTabsPanel>
-      <p>&nbsp;</p>{" "}
-    </>
-  ) : (
-    <div>
-      <p>Connect with Revisual first, finish setup to embed your widgets.</p>
-      <Button
-        variant="secondary"
-        href={"/wp-admin/admin.php?page=revisual"}
-        target={"_RevisualSettings"}
-      >
-        Go to Revisual settings...
-      </Button>
-    </div>
-  );
+  const onInsert = (widget) =>
+    setAttributes({
+      widget_type: widget.widget_type,
+      widgetType: widget.widget_type,
+      uuid: widget.uuid,
+      template: widget.template,
+      widgetSlug: widget.slug,
+    });
 
   return (
-    <>
-      <InspectorControls>
-        <PanelBody>{content}</PanelBody>
-      </InspectorControls>
-    </>
+    <InspectorControls>
+      <PanelBody title={`${WidgetsNames[widgetType]?.title || "Widgets"}`}>
+        <div className={"rev-side"}>
+          <div className={"rev-side-actions"}>
+            <AddNewButton widgetType={widgetType} />
+            <RefreshWidgetsList />
+          </div>
+
+          <label className={"rev-side-search"}>
+            <SearchLg size={14} className={"rev-side-search-icon"} />
+            <input
+              type={"search"}
+              className={"rev-side-search-input"}
+              placeholder={`Search ${plural}`}
+              aria-label={`Search ${plural} by name`}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+          </label>
+
+          {matches.length ? (
+            <ul className={"rev-side-list"}>
+              {matches.map((widget) => {
+                const current =
+                  !!selectedUuid && String(widget.uuid) === selectedUuid;
+
+                return (
+                  <li
+                    className={`rev-side-item${
+                      current ? " rev-side-item_current" : ""
+                    }`}
+                    key={widget.uuid}
+                  >
+                    <span className={"rev-side-item-text"}>
+                      <span className={"rev-side-item-name"}>
+                        {widget.name}
+                      </span>
+                      <span className={"rev-side-item-meta"}>
+                        {labelOf(widget.template)}
+                      </span>
+                    </span>
+
+                    <span className={"rev-side-item-actions"}>
+                      <a
+                        className={"rev-side-icon-btn"}
+                        href={`${appConfig.appUrl}/${widgetType}/${widget.uuid}`}
+                        target={"_revisual"}
+                        title={`Edit in ${appConfig.appName}`}
+                        aria-label={`Edit ${widget.name} in ${appConfig.appName}`}
+                      >
+                        <Edit01 size={14} />
+                      </a>
+
+                      {current ? (
+                        <span
+                          className={"rev-side-current"}
+                          title={"Currently embedded"}
+                        >
+                          <Check size={14} />
+                        </span>
+                      ) : (
+                        <button
+                          type={"button"}
+                          className={"rev-side-insert"}
+                          onClick={() => onInsert(widget)}
+                        >
+                          Insert
+                        </button>
+                      )}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p className={"rev-side-empty"}>
+              {query
+                ? `No ${plural} match “${query}”.`
+                : `No published ${plural} yet.`}
+            </p>
+          )}
+        </div>
+      </PanelBody>
+    </InspectorControls>
   );
 };
 

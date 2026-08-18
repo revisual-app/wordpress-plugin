@@ -304,6 +304,248 @@ sans-serif;
   text-align: center;
 }
 
+// ---------------------------------------------------------------- inspector
+
+// The sidebar is ~280px wide and sits inside WP's own PanelBody padding, so
+// everything here is one step tighter than the canvas placeholder.
+.rev-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: $rev-font;
+  color: $rev-text-primary;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+.rev-side-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px;
+}
+
+.rev-side .rev--btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-family: $rev-font;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.rev-side .rev--btn_primary {
+  background: $rev-brand-600;
+  border: none;
+  box-shadow: $rev-shadow-xs, inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+  color: #fff;
+
+  &:hover {
+    background: $rev-brand-700;
+    color: #fff;
+  }
+}
+
+.rev-side .rev--btn_secondary {
+  background: $rev-surface;
+  border: 1px solid $rev-border-primary;
+  box-shadow: $rev-shadow-xs;
+  color: $rev-text-secondary;
+
+  &:hover {
+    background: $rev-bg-subtle;
+  }
+}
+
+.rev-side-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.rev-side-search-icon {
+  position: absolute;
+  left: 10px;
+  color: $rev-text-quaternary;
+  pointer-events: none;
+}
+
+.rev-side .rev-side-search-input {
+  width: 100%;
+  height: 32px;
+  min-height: 32px;
+  margin: 0;
+  padding: 0 10px 0 30px;
+  border: 1px solid $rev-border-primary;
+  border-radius: 8px;
+  background: $rev-surface;
+  box-shadow: $rev-shadow-xs;
+  font-family: $rev-font;
+  font-size: 13px;
+  line-height: 30px;
+  color: $rev-text-primary;
+
+  &::placeholder {
+    color: $rev-text-quaternary;
+  }
+
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  &:focus {
+    border-color: $rev-brand-300;
+    box-shadow: 0 0 0 4px $rev-brand-100;
+    outline: none;
+  }
+}
+
+.rev-side-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// One row per widget instead of the old name / template / three-button stack.
+// Preview and Edit stay hidden until the row is hovered or focused, so the
+// resting list is scannable.
+.rev-side-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 7px 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  &:hover,
+  &:focus-within {
+    border-color: $rev-border-secondary;
+    background: $rev-bg-subtle;
+
+    .rev-side-icon-btn {
+      opacity: 1;
+    }
+  }
+
+  &_current {
+    border-color: #f2d9f5;
+    background: $rev-brand-25;
+  }
+}
+
+.rev-side-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+
+.rev-side-item-name {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  color: $rev-text-primary;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rev-side-item-meta {
+  font-size: 11px;
+  line-height: 16px;
+  color: $rev-text-tertiary;
+}
+
+.rev-side-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: none;
+}
+
+.rev-side .rev-side-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: $rev-text-tertiary;
+  opacity: 0;
+  cursor: pointer;
+
+  &:hover {
+    background: $rev-border-secondary;
+    color: $rev-text-secondary;
+  }
+
+  &:focus-visible {
+    opacity: 1;
+    box-shadow: 0 0 0 3px $rev-brand-100;
+    outline: none;
+  }
+}
+
+.rev-side .rev-side-insert {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border: 1px solid $rev-border-primary;
+  border-radius: 6px;
+  background: $rev-surface;
+  box-shadow: $rev-shadow-xs;
+  font-family: $rev-font;
+  font-size: 12px;
+  font-weight: 600;
+  color: $rev-text-secondary;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $rev-brand-300;
+    background: $rev-brand-25;
+    color: $rev-brand-700;
+  }
+}
+
+// The embedded one doesn't get an Insert — it gets a tick.
+.rev-side-current {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: $rev-brand-600;
+}
+
+.rev-side-empty {
+  padding: 16px 8px;
+  font-size: 12px;
+  line-height: 18px;
+  color: $rev-text-tertiary;
+  text-align: center;
+}
+
 // ---------------------------------------------------------------- preview
 
 .rev-widget-preview-block {

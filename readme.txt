@@ -214,14 +214,13 @@ Yes. Revisual includes an Event Engagement report that shows impressions, views,
 
 1. Calendar Template Builder - Preview your events in real-time while customizing layout, colors, fonts, and event styles using the design panel.
 2. Event Details Modal - Click any event to see full details in a sleek modal. All content — title, description, time, location, and more — is controlled directly from Google Calendar.
-3. Enhanced Event Features - View recurring event series with Google Places integration. Venue images, addresses, and navigation links are pulled automatically from your Google Calendar event data.
+3. Event Engagement Report - Track impressions, views, and engagement ratio for every event, broken down by traffic source (widget, direct link, QR code, email).
 4. Easy Event Sharing - End users can share events via QR codes, social media, or direct links. All sharing options are generated automatically from your Google Calendar event details.
 5. ICS / iCal Subscriptions - Allow visitors to subscribe to your events with ICS/iCal feeds. Events sync automatically to their personal calendars, always sourced from your Google Calendar.
 6. Event Filters - Filter events by calendar, location, or tags. All filter options are controlled from your Google Calendar.
 7. Event Alerts - Display upcoming events as banners with optional countdown timers, always synced from your Google Calendar.
 8. WordPress Admin Dashboard - Clean, intuitive settings panel for configuring widgets, connecting calendars, and managing plugin options.
 9. Gutenberg Block Preview - See your Revisual event widget live in the WordPress editor before publishing.
-10. Event Engagement Report - Track impressions, views, and engagement ratio for every event, broken down by traffic source (widget, direct link, QR code, email).
 
 == Upgrade Notice ==
 
