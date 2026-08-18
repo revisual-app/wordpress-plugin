@@ -1209,6 +1209,20 @@ $rev-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   text-wrap: pretty;
 }
 
+.rev--notice-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+
+// The states centre their disclosure under centred copy; in the notice card
+// everything hangs off the left edge.
+.rev--notice .rev--details {
+  align-items: flex-start;
+}
+
 // Skeleton rows keep the toolbar, header and column widths in place while the
 // collection reloads, so nothing under the cursor jumps.
 .rev--skeleton-row {

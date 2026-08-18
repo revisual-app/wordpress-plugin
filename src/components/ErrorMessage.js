@@ -7,6 +7,11 @@
  * behaviour (details collapsed by default), now on the plugin's own card style
  * with a copyable report for support.
  *
+ * Always offers a way forward: `onRetry` when the caller can re-run the request
+ * (MainPage passes fetchWpSettings), and a page reload otherwise — a failed WP
+ * settings read leaves the admin screen with nothing else on it, so a dead-end
+ * card would strand the user.
+ *
  * Paths are written for src/components/ — ErrorDetails ships from
  * implementation/connected/ into src/adminPanel/components/.
  */
@@ -15,9 +20,9 @@ import React from "react";
 import ErrorDetails, {
   readErrorMessage,
 } from "../adminPanel/components/ErrorDetails";
-import { AlertCircle } from "../icons";
+import { AlertCircle, RefreshCcw01 } from "../icons";
 
-const ErrorMessage = ({ error, action }) => {
+const ErrorMessage = ({ error, action, onRetry, retrying = false }) => {
   const message = readErrorMessage(error);
   const isMarkup = typeof message === "string" && message.includes("</");
 
@@ -41,6 +46,30 @@ const ErrorMessage = ({ error, action }) => {
           ) : (
             <p className={"rev--notice-text"}>{message}</p>
           )}
+
+          <div className={"rev--notice-actions"}>
+            {onRetry ? (
+              <button
+                type={"button"}
+                className={"rev--btn rev--btn_primary rev--btn_sm"}
+                onClick={onRetry}
+                disabled={retrying}
+              >
+                <RefreshCcw01
+                  size={16}
+                  className={retrying ? "rev--spin" : undefined}
+                />
+                {retrying ? "Trying again…" : "Try again"}
+              </button>
+            ) : null}
+            <button
+              type={"button"}
+              className={"rev--btn rev--btn_secondary rev--btn_sm"}
+              onClick={() => window.location.reload()}
+            >
+              Reload the page
+            </button>
+          </div>
 
           <ErrorDetails error={error} action={action} />
         </div>

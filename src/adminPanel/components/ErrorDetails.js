@@ -32,9 +32,17 @@ export const readErrorMessage = (error) => {
 };
 
 /**
+ * Keys whose values must never leave the site in a support paste. The WP
+ * settings payload carries the hashed API key and a signed auth URL; both were
+ * showing up verbatim in the dump.
+ */
+const SECRET_KEY = /(key|token|secret|password|nonce|signature|auth)/i;
+
+/**
  * Whole error object as pretty JSON. Error instances hide message/stack behind
  * non-enumerable props and axios errors self-reference through `config`, so
- * neither survives a plain JSON.stringify — both are handled here.
+ * neither survives a plain JSON.stringify — both are handled here, and secrets
+ * are replaced with [redacted].
  *
  * @param {*} value
  * @returns {string}
@@ -46,6 +54,9 @@ export const dumpError = (value) => {
     return JSON.stringify(
       value,
       (key, val) => {
+        if (key && SECRET_KEY.test(key) && typeof val === "string") {
+          return "[redacted]";
+        }
         if (val instanceof Error) {
           return {
             name: val.name,
