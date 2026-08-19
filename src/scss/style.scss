@@ -1,3 +1,4 @@
+@use "sass:meta";
 /**
  * The following styles get applied both on the front of your site
  * and in the editor.
@@ -11,4 +12,23 @@
 	padding: 2px;
 }
 
-@import "./admin.scss";
+
+
+.rev--admin-settings-container {
+  margin-right: 1em;
+}
+
+
+
+@font-face {
+  font-family: "Inter";
+  src: url("./../../public/rev/fonts/InterVariable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@include meta.load-css("_welcome.scss");
+@include meta.load-css("_footer.scss");
+@include meta.load-css("_app.scss");

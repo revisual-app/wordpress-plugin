@@ -1,18 +1,18 @@
 === Revisual – Event Communication for Google Calendar ===
 Contributors:      piotrpoz, revisual
 Tags:              google, calendar, events, revisual, embed
-Tested up to:      7.0
-Stable tag:        0.2.5
+Tested up to:      7.1
+Stable tag:        1.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
-Requires at least: 6.2
+Requires at least: 6.4
 
 Turn your Google Calendar into a full event communication channel. Revisual connects your calendar to your website, QR codes, emails, and partner sites — automatically, beautifully, and from one source of truth.
 
 
 == Description ==
 
-Most organisations run events well. Few communicate them well. Revisual closes that gap.
+A great event still falls flat if the calendar says one thing and the flyer says another. Revisual closes that gap.
 
 Your Google Calendar is already where your events live. Revisual transforms it into a complete event communication system — distributing your programme automatically across your website, printed materials, partner sites, emails, and more. One update in Google Calendar, and every channel stays in sync.
 
@@ -41,6 +41,7 @@ Revisual connects your calendar to the channels your audience actually uses:
 ✔ Fully customizable widget builder (250+ options)
 ✔ QR codes & hosted event pages
 ✔ Multiple widget layouts (list, grid, schedule, cards, slider, monthly view, and more)
+✔ Event engagement reporting — impressions, views, and engagement ratio per event, by traffic source
 ✔ Event highlighting & branding options
 ✔ Simple script embed for non-WordPress sites, kiosks, and displays
 ✔ Works across multiple websites simultaneously
@@ -93,7 +94,6 @@ All connections are encrypted. No visitor data is collected. No cookies are trac
 We're actively developing new features, including:
 
 * More calendar integrations
-* Engagement metrics — see which events attract the most interest
 * RSVP functionality
 
 
@@ -205,12 +205,16 @@ Yes. Revisual outputs HTML + CSS, so developers can add custom styles as needed.
 
 Events from Google Calendar are synced automatically — usually within seconds of a change being made.
 
+= Can I see how my events are performing? =
+
+Yes. Revisual includes an Event Engagement report that shows impressions, views, and an engagement ratio for every event — broken down by traffic source (widget, direct link, QR code, or email). It's available on your dashboard and as a full report, on every plan, at no extra cost.
+
 
 == Screenshots ==
 
 1. Calendar Template Builder - Preview your events in real-time while customizing layout, colors, fonts, and event styles using the design panel.
 2. Event Details Modal - Click any event to see full details in a sleek modal. All content — title, description, time, location, and more — is controlled directly from Google Calendar.
-3. Enhanced Event Features - View recurring event series with Google Places integration. Venue images, addresses, and navigation links are pulled automatically from your Google Calendar event data.
+3. Event Engagement Report - Track impressions, views, and engagement ratio for every event, broken down by traffic source (widget, direct link, QR code, email).
 4. Easy Event Sharing - End users can share events via QR codes, social media, or direct links. All sharing options are generated automatically from your Google Calendar event details.
 5. ICS / iCal Subscriptions - Allow visitors to subscribe to your events with ICS/iCal feeds. Events sync automatically to their personal calendars, always sourced from your Google Calendar.
 6. Event Filters - Filter events by calendar, location, or tags. All filter options are controlled from your Google Calendar.
@@ -218,13 +222,16 @@ Events from Google Calendar are synced automatically — usually within seconds 
 8. WordPress Admin Dashboard - Clean, intuitive settings panel for configuring widgets, connecting calendars, and managing plugin options.
 9. Gutenberg Block Preview - See your Revisual event widget live in the WordPress editor before publishing.
 
-
 == Upgrade Notice ==
 
 Revisual updates are fully backward compatible. There are no breaking changes in this release — you can safely update without affecting existing widgets or settings.
 
 
 == Changelog ==
+
+= 0.2.7 | 18 Aug 2026 =
+* New: Event Engagement report — impressions, views, and engagement ratio per event, broken down by traffic source.
+* Testing with WordPress 7.1
 
 = 0.2.6 | 20, May 2026 =
 * Testing with WordPress 7.0 and PHP 8.2

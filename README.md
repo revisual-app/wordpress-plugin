@@ -5,7 +5,7 @@
 ## Plugin Objectives
 - ✅ Install the loader script on WordPress page (frontend).
 - ✅ Install the alerts script on WordPress page (frontend).
-- ✅ Support revisual/dc short codes
+- ✅ Support revisual short codes
 - ✅ List all the short codes in the plugin page
 - ✅ Introduce build block for easy widget embedding.
 

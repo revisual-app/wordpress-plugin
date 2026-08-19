@@ -1,0 +1,1330 @@
+// Connected admin screens — app bar, page header, calendars table.
+// Replaces the .rev-app-panel-header / .rev-session-panel / .rev-widgets-* block
+// in src/scss/admin.scss. Uses the variables declared at the top of the welcome
+// block, so that block must come first in the file.
+
+@use "./variables" as *;
+
+.rev--app {
+  font-family: $rev-font;
+  color: $rev-text-primary;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+.rev--app-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// ---------------------------------------------------------------- app bar
+
+.rev--appbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 64px;
+  padding: 8px 16px;
+  background: $rev-surface;
+  border: 1px solid $rev-border-secondary;
+  border-radius: $rev-radius-xl;
+  box-shadow: $rev-shadow-xs;
+
+  @media screen and (max-width: 782px) {
+    flex-wrap: wrap;
+  }
+}
+
+.rev--appbar-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+
+.rev--appbar-mark {
+  display: flex;
+  align-items: center;
+  box-shadow: none;
+
+  img {
+    display: block;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 4px $rev-brand-100;
+    border-radius: 6px;
+    outline: none;
+  }
+}
+
+.rev--appbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rev--appbar-tab {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-family: $rev-font;
+  font-size: 14px;
+  font-weight: 600;
+  color: $rev-text-tertiary;
+  cursor: pointer;
+
+  &:hover {
+    background: $rev-bg-subtle;
+    color: $rev-text-secondary;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 4px $rev-brand-100;
+    outline: none;
+  }
+
+  &.is-active {
+    background: $rev-brand-100;
+    color: $rev-brand-700;
+  }
+}
+
+// ---------------------------------------------------------------- session card
+
+.rev--session {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+
+.rev--session-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 10px 0 6px;
+  border: none;
+  border-radius: $rev-radius-md;
+  background: transparent;
+  font-family: $rev-font;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    background: $rev-bg-subtle;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 4px $rev-brand-100;
+    outline: none;
+  }
+}
+
+.rev--session-avatar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background: $rev-brand-100;
+  border: 1px solid $rev-brand-200;
+  color: $rev-brand-700;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.rev--session-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.rev--session-name {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  color: $rev-text-primary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.rev--session-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  line-height: 16px;
+  color: $rev-text-tertiary;
+
+  &_error {
+    color: $rev-error-600;
+  }
+
+  &_warning {
+    color: #b54708;
+  }
+}
+
+.rev--session-caret {
+  flex: none;
+  color: $rev-text-quaternary;
+}
+
+.rev--session_error,
+.rev--session_loading {
+  padding: 6px 10px;
+  border: 1px solid $rev-border-secondary;
+  border-radius: $rev-radius-md;
+  background: $rev-bg-subtle;
+}
+
+// An unreachable API is not a credentials problem — no CTA in the bar, and a
+// warning edge instead of the error red the rejected-key card carries.
+.rev--session_warning {
+  border-color: #fedf89;
+  background: #fffcf5;
+}
+
+// ---------------------------------------------------------------- dot + badge
+
+.rev--dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: $rev-text-quaternary;
+
+  &_success {
+    background: $rev-success-500;
+  }
+  &_warning {
+    background: $rev-warning-500;
+  }
+  &_error {
+    background: $rev-error-500;
+  }
+}
+
+.rev--badge {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+
+  &_warning {
+    background: #fffaeb;
+    border-color: #fedf89;
+    color: #b54708;
+  }
+  &_error {
+    background: #fef3f2;
+    border-color: #fecdca;
+    color: $rev-error-600;
+  }
+  &_success {
+    background: #ecfdf3;
+    border-color: #abefc6;
+    color: #067647;
+  }
+}
+
+// ---------------------------------------------------------------- buttons
+
+// The welcome screen's .rev--btn rules are anchor-scoped and sized for a hero
+// (44px / 16px). Inside the app chrome the same classes run at 40px / 14px and
+// have to work on <button> too. .rev--card_error is listed because ErrorMessage
+// renders outside the app shell (MainPage mounts it above <AppPanel>).
+.rev--app,
+.rev--table-card,
+.rev--card_error {
+  .rev--btn {
+    height: 40px;
+    padding: 0 14px;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+  }
+
+  .rev--btn_sm {
+    height: 32px;
+    padding: 0 12px;
+  }
+
+  .rev--btn_icon {
+    width: 40px;
+    padding: 0;
+  }
+
+  .rev--btn_primary {
+    background: $rev-brand-600;
+    border: none;
+    color: #fff;
+    box-shadow: $rev-shadow-xs, inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+
+    &:hover,
+    &:active {
+      background: $rev-brand-700;
+      color: #fff;
+    }
+
+    &:focus {
+      color: #fff;
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px $rev-brand-300;
+      outline: none;
+    }
+  }
+
+  .rev--btn_secondary {
+    background: $rev-surface;
+    border: 1px solid $rev-border-primary;
+    color: $rev-text-secondary;
+
+    &:hover,
+    &:active {
+      background: $rev-bg-subtle;
+      color: $rev-text-secondary;
+    }
+
+    &:focus {
+      color: $rev-text-secondary;
+      box-shadow: 0 0 0 4px #f2f4f7;
+      outline: none;
+    }
+  }
+
+  .rev--btn[disabled],
+  .rev--btn[disabled]:hover {
+    background: #f2f4f7;
+    border-color: $rev-border-secondary;
+    color: $rev-text-quaternary;
+    box-shadow: none;
+    cursor: default;
+  }
+}
+
+.rev--icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: $rev-radius-md;
+  background: transparent;
+  color: $rev-text-tertiary;
+  cursor: pointer;
+
+  &:hover {
+    background: $rev-bg-subtle;
+    color: $rev-text-secondary;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 4px $rev-brand-100;
+    outline: none;
+  }
+
+  &_sm {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+
+    &:hover {
+      background: transparent;
+      color: $rev-brand-600;
+    }
+  }
+}
+
+// ---------------------------------------------------------------- menus
+
+.rev--menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  z-index: 20;
+  min-width: 200px;
+  padding: 4px;
+  background: $rev-surface;
+  border: 1px solid $rev-border-secondary;
+  border-radius: $rev-radius-md;
+  box-shadow: 0 12px 16px -4px rgba(10, 13, 18, 0.08),
+  0 4px 6px -2px rgba(10, 13, 18, 0.03);
+
+  &_end {
+    right: 0;
+  }
+}
+
+.rev--menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-family: $rev-font;
+  font-size: 14px;
+  font-weight: 500;
+  color: $rev-text-secondary;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: none;
+
+  &:hover {
+    background: $rev-bg-subtle;
+    color: $rev-text-primary;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 4px $rev-brand-100;
+    outline: none;
+  }
+
+  &_danger {
+    color: $rev-error-600;
+
+    &:hover {
+      background: #fef3f2;
+      color: $rev-error-600;
+    }
+  }
+}
+
+// ---------------------------------------------------------------- page header
+
+.rev--page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.rev--page-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.rev--page-title {
+  margin: 0;
+  font-size: 30px;
+  line-height: 38px;
+  font-weight: 600;
+  color: $rev-text-primary;
+}
+
+.rev--page-subtitle {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: $rev-text-tertiary;
+  text-wrap: pretty;
+}
+
+.rev--page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+
+// ---------------------------------------------------------------- dashboard
+
+.rev--stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+
+  @media screen and (max-width: 782px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.rev--stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  background: $rev-surface;
+  border: 1px solid $rev-border-secondary;
+  border-radius: $rev-radius-xl;
+  box-shadow: $rev-shadow-xs;
+}
+
+.rev--stat-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: $rev-text-tertiary;
+}
+
+.rev--stat-value {
+  font-size: 30px;
+  line-height: 38px;
+  font-weight: 600;
+  color: $rev-text-primary;
+}
+
+.rev--card {
+  background: $rev-surface;
+  border: 1px solid $rev-border-secondary;
+  border-radius: $rev-radius-xl;
+  box-shadow: $rev-shadow-xs;
+  padding: 24px;
+
+  &_prompt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+}
+
+.rev--card-title {
+  margin: 0 0 4px;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 600;
+  color: $rev-text-primary;
+}
+
+.rev--card-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: $rev-text-tertiary;
+  text-wrap: pretty;
+}
+
+.rev--card-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+
+// ---------------------------------------------------------------- table card
+
+.rev--table-card {
+  background: $rev-surface;
+  border: 1px solid $rev-border-secondary;
+  border-radius: $rev-radius-xl;
+  box-shadow: $rev-shadow-xs;
+  overflow: hidden;
+  font-family: $rev-font;
+}
+
+.rev--toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+}
+
+.rev--toolbar-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  font-size: 14px;
+  color: $rev-text-tertiary;
+
+  .components-spinner {
+    margin: 0;
+  }
+}
+
+.rev--search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 260px;
+
+  @media screen and (max-width: 782px) {
+    width: 100%;
+  }
+}
+
+.rev--search-icon {
+  position: absolute;
+  left: 12px;
+  color: $rev-text-quaternary;
+  pointer-events: none;
+}
+
+// WP core styles inputs with `input[type="search"]` (element + attribute), which
+// outranks a single class — every rule below needs the extra `.rev--app` class to
+// win, otherwise core's 8px padding puts the placeholder under the search icon.
+.rev--app .rev--search-input,
+.rev--table-card .rev--search-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 36px;
+  min-height: 36px;
+  margin: 0;
+  padding: 0 32px 0 36px;
+  border: 1px solid $rev-border-primary;
+  border-radius: $rev-radius-md;
+  background: $rev-surface;
+  box-shadow: $rev-shadow-xs;
+  font-family: $rev-font;
+  font-size: 14px;
+  line-height: 34px;
+  color: $rev-text-primary;
+
+  &::placeholder {
+    color: $rev-text-quaternary;
+  }
+
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  &:focus {
+    border-color: $rev-brand-300;
+    box-shadow: 0 0 0 4px $rev-brand-100;
+    outline: none;
+  }
+}
+
+.rev--search-clear {
+  position: absolute;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: $rev-text-quaternary;
+  cursor: pointer;
+
+  &:hover {
+    color: $rev-text-secondary;
+  }
+}
+
+.rev--select {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.rev--app .rev--select-input,
+.rev--table-card .rev--select-input {
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  height: 36px;
+  min-height: 36px;
+  max-width: none;
+  min-width: 170px;
+  margin: 0;
+  padding: 0 34px 0 12px;
+  border: 1px solid $rev-border-primary;
+  border-radius: $rev-radius-md;
+  background: $rev-surface;
+  background-image: none;
+  box-shadow: $rev-shadow-xs;
+  font-family: $rev-font;
+  font-size: 14px;
+  line-height: 34px;
+  color: $rev-text-primary;
+  cursor: pointer;
+
+  &:focus {
+    border-color: $rev-brand-300;
+    box-shadow: 0 0 0 4px $rev-brand-100;
+    outline: none;
+  }
+}
+
+.rev--select-caret {
+  position: absolute;
+  right: 10px;
+  color: $rev-text-tertiary;
+  pointer-events: none;
+}
+
+.rev--segmented {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid $rev-border-secondary;
+  border-radius: $rev-radius-md;
+  background: $rev-bg-subtle;
+}
+
+.rev--segment {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  font-family: $rev-font;
+  font-size: 14px;
+  font-weight: 600;
+  color: $rev-text-tertiary;
+  cursor: pointer;
+
+  &:hover {
+    color: $rev-text-secondary;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 4px $rev-brand-100;
+    outline: none;
+  }
+
+  &.is-active {
+    background: $rev-surface;
+    border-color: $rev-border-secondary;
+    box-shadow: $rev-shadow-xs;
+    color: $rev-text-primary;
+  }
+}
+
+.rev--segment-count {
+  font-weight: 500;
+  color: $rev-text-tertiary;
+}
+
+// ---------------------------------------------------------------- table
+
+.rev--table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.rev--table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+
+  th,
+  td {
+    text-align: left;
+    vertical-align: middle;
+    padding: 12px 20px;
+  }
+
+  thead th {
+    padding: 8px 20px;
+    background: $rev-bg-subtle;
+    border-top: 1px solid $rev-border-secondary;
+    border-bottom: 1px solid $rev-border-secondary;
+    font-size: 12px;
+    font-weight: 500;
+    color: $rev-text-tertiary;
+    white-space: nowrap;
+  }
+
+  tbody tr + tr td {
+    border-top: 1px solid $rev-border-secondary;
+  }
+
+  tbody tr:hover td {
+    background: #fcfcfd;
+  }
+
+  td {
+    color: $rev-text-tertiary;
+  }
+}
+
+.rev--col-name {
+  min-width: 220px;
+}
+.rev--col-template {
+  width: 130px;
+}
+.rev--col-shortcode {
+  width: 340px;
+}
+.rev--col-updated {
+  width: 150px;
+  white-space: nowrap;
+}
+.rev--col-actions {
+  width: 64px;
+  text-align: right;
+}
+.rev--col-insert {
+  width: 100px;
+  text-align: right;
+}
+
+.rev--th-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover,
+  &.is-sorted {
+    color: $rev-text-secondary;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 4px $rev-brand-100;
+    border-radius: 4px;
+    outline: none;
+  }
+}
+
+.rev--sort-caret {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+
+  &_asc {
+    border-bottom: 5px solid currentColor;
+  }
+  &_desc {
+    border-top: 5px solid currentColor;
+  }
+  &_none {
+    border-top: 5px solid $rev-border-primary;
+  }
+}
+
+.rev--row-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.rev--row-name-text {
+  font-weight: 500;
+  color: $rev-text-primary;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rev--col-name .rev--badge {
+  margin: 4px 0 0 16px;
+}
+
+.rev--shortcode {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  height: 32px;
+  padding: 0 4px 0 10px;
+  border: 1px solid $rev-border-secondary;
+  border-radius: $rev-radius-md;
+  background: $rev-bg-subtle;
+}
+
+.rev--shortcode-text {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  background: transparent;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: $rev-text-secondary;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rev--row-menu-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+// ---------------------------------------------------------------- pagination
+
+.rev--pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  border-top: 1px solid $rev-border-secondary;
+  flex-wrap: wrap;
+}
+
+.rev--pagination-status {
+  font-size: 14px;
+  font-weight: 500;
+  color: $rev-text-secondary;
+}
+
+.rev--pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rev--page-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  border: none;
+  border-radius: $rev-radius-md;
+  background: transparent;
+  font-family: $rev-font;
+  font-size: 14px;
+  font-weight: 500;
+  color: $rev-text-tertiary;
+  cursor: pointer;
+
+  &:hover {
+    background: $rev-bg-subtle;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 4px $rev-brand-100;
+    outline: none;
+  }
+
+  &.is-active {
+    background: $rev-brand-100;
+    color: $rev-brand-700;
+    font-weight: 600;
+  }
+}
+
+.rev--pagination-steps {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+// ---------------------------------------------------------------- states
+
+.rev--state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 48px 32px;
+  text-align: center;
+
+  &_inline {
+    padding: 40px 24px;
+    gap: 12px;
+  }
+}
+
+.rev--state-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: $rev-brand-100;
+  border: 1px solid $rev-brand-200;
+  color: $rev-brand-600;
+
+  &_error {
+    background: #fef3f2;
+    border-color: #fecdca;
+    color: $rev-error-600;
+  }
+
+  // Reachability problems are transient, not the user's fault: warning tint
+  // rather than the error red used for a rejected key.
+  &_warning {
+    background: #fffaeb;
+    border-color: #fedf89;
+    color: #dc6803;
+  }
+}
+
+.rev--state-title {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: $rev-text-primary;
+}
+
+.rev--state-text {
+  margin: 0;
+  max-width: 400px;
+  font-size: 14px;
+  line-height: 20px;
+  color: $rev-text-tertiary;
+  text-wrap: pretty;
+}
+
+.rev--state-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+// Quiet reassurance under a recovery action — smaller and lighter than the
+// state's own body copy so it reads as a footnote, not a second paragraph.
+.rev--state-note {
+  margin: -8px 0 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: $rev-text-quaternary;
+}
+
+.rev--spin {
+  animation: rev-spin 1s linear infinite;
+}
+
+@keyframes rev-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ---------------------------------------------------------------- error details
+
+// Collapsed by default: the backend response is for the one person in ten who
+// is about to file a support ticket, not for everyone reading the headline.
+.rev--details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 4px;
+  text-align: left;
+}
+
+.rev--details-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: $rev-font;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  color: $rev-text-tertiary;
+  cursor: pointer;
+
+  &:hover {
+    color: $rev-text-secondary;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px $rev-brand-100;
+    border-radius: $rev-radius-xs;
+  }
+}
+
+.rev--details-caret {
+  flex: none;
+  transition: transform 0.15s ease-out;
+
+  &_open {
+    transform: rotate(180deg);
+  }
+}
+
+.rev--details-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 560px;
+  padding: 14px 16px;
+  border: 1px solid $rev-border-secondary;
+  border-radius: $rev-radius-lg;
+  background: $rev-bg-subtle;
+}
+
+.rev--details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+
+.rev--details-row {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.rev--details-label {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 600;
+  color: $rev-text-tertiary;
+}
+
+// Backend strings are paths, stack lines and JSON — monospace, wrapped, and
+// selectable so a manual copy still works if the clipboard API is blocked.
+.rev--details-value {
+  margin: 0;
+  font-family: $rev-font-mono;
+  font-size: 12px;
+  line-height: 18px;
+  color: $rev-text-primary;
+  word-break: break-word;
+  white-space: pre-wrap;
+  user-select: text;
+}
+
+// The raw response, verbatim. Long stack traces are common, so it scrolls
+// inside the panel instead of pushing the actions off-screen.
+.rev--details-dump {
+  margin: 0;
+  max-height: 240px;
+  overflow: auto;
+  padding: 10px 12px;
+  border: 1px solid $rev-border-secondary;
+  border-radius: $rev-radius-xs;
+  background: $rev-surface;
+  font-family: $rev-font-mono;
+  font-size: 11px;
+  line-height: 16px;
+  color: $rev-text-secondary;
+  white-space: pre;
+  tab-size: 2;
+  user-select: text;
+}
+
+.rev--details-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rev--details-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: $rev-brand-700;
+  text-decoration: none;
+
+  &:hover {
+    color: $rev-brand-800;
+    text-decoration: underline;
+  }
+}
+
+// ---------------------------------------------------------------- notice card
+
+.rev--card_error {
+  border-color: #fecdca;
+}
+
+.rev--notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.rev--notice-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+
+.rev--notice-title {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: $rev-text-primary;
+}
+
+.rev--notice-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: $rev-text-tertiary;
+  text-wrap: pretty;
+}
+
+.rev--notice-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+
+// The states centre their disclosure under centred copy; in the notice card
+// everything hangs off the left edge.
+.rev--notice .rev--details {
+  align-items: flex-start;
+}
+
+// Skeleton rows keep the toolbar, header and column widths in place while the
+// collection reloads, so nothing under the cursor jumps.
+.rev--skeleton-row {
+  animation: rev-pulse 1.6s ease-in-out infinite;
+}
+
+// One bar shape for every placeholder: a hairline-grey pill with a slow light
+// sweep. The sweep reads as "loading" without the jitter of a pulsing block.
+.rev--skeleton {
+  display: block;
+  height: 10px;
+  border-radius: 9999px;
+  background: $rev-border-secondary;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  animation: rev-sweep 1.8s ease-in-out infinite;
+
+  // Button-sized ghosts in action rows: same fill, control geometry.
+  &_btn {
+    height: 36px;
+    border-radius: $rev-radius-md;
+  }
+}
+
+.rev--skeleton-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+// ---------------------------------------------------------------- dashboard loading
+
+.rev--loading {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+// Indeterminate progress hairline: the one moving element that says the request
+// is still open, in place of the old centred spinner.
+.rev--loading-bar {
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 9999px;
+  background: $rev-brand-100;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 32%;
+    border-radius: 9999px;
+    background: $rev-brand-600;
+    animation: rev-indeterminate 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes rev-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes rev-sweep {
+  0% {
+    background-position: 150% 0;
+  }
+  100% {
+    background-position: -50% 0;
+  }
+}
+
+@keyframes rev-indeterminate {
+  0% {
+    left: -34%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rev--skeleton-row {
+    animation: none;
+    opacity: 0.7;
+  }
+
+  .rev--skeleton {
+    animation: none;
+    background-image: none;
+  }
+
+  .rev--loading-bar::after {
+    animation: none;
+    left: 0;
+    width: 100%;
+    opacity: 0.5;
+  }
+}
