@@ -5,7 +5,7 @@ Tested up to:      7.0
 Stable tag:        0.2.5
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
-Requires at least: 6.2
+Requires at least: 6.4
 
 Turn your Google Calendar into a full event communication channel. Revisual connects your calendar to your website, QR codes, emails, and partner sites — automatically, beautifully, and from one source of truth.
 
