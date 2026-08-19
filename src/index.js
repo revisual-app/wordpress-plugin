@@ -27,11 +27,11 @@ import SettingsApp from "./adminPanel/SettingsApp";
 import { PersistGate } from "redux-persist/integration/react";
 import { AppIconRaw } from "./adminPanel/components/AppIcon";
 const blockEditor = (props) => (
-	<Provider store={store}>
-		<PersistGate loading={null} persistor={persistor}>
-			<Edit {...props} />
-		</PersistGate>
-	</Provider>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <Edit {...props} />
+    </PersistGate>
+  </Provider>
 );
 /**
  * Every block starts by registering a new block type definition.
@@ -39,51 +39,52 @@ const blockEditor = (props) => (
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType(metadata.name, {
-	/**
-	 * @see ./edit.js
-	 */
-	edit: blockEditor,
+  /**
+   * @see ./edit.js
+   */
+  edit: blockEditor,
 
-	/**
-	 * @see ./save.js
-	 */
-	save,
+  /**
+   * @see ./save.js
+   */
+  save,
 
-	title: "Revisual",
+  title: "Revisual",
 
-	attributes: {
-		widgetType: {
-			type: "string",
-			default: "calendar",
-		},
-		uuid: {
-			type: "string",
-		},
-		template: {
-			type: "string",
-		},
-		widgetSlug: {
-			type: "string",
-		},
-		iframe: {
-			type: "boolean",
-		},
-	},
-	icon: AppIconRaw,
+  attributes: {
+    widgetType: {
+      type: "string",
+      default: "calendar",
+    },
+    uuid: {
+      type: "string",
+    },
+    template: {
+      type: "string",
+    },
+    widgetSlug: {
+      type: "string",
+    },
+    iframe: {
+      type: "boolean",
+    },
+  },
+  icon: AppIconRaw,
 });
 
+console.log("adf");
 domReady(() => {
-	const settingsPageDom = document.getElementById("_rev--settings-page");
-	if (!settingsPageDom) {
-		return;
-	}
-	const root = createRoot(document.getElementById("_rev--settings-page"));
+  const settingsPageDom = document.getElementById("_rev--settings-page");
+  if (!settingsPageDom) {
+    return;
+  }
+  const root = createRoot(document.getElementById("_rev--settings-page"));
 
-	root.render(
-		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<SettingsApp />
-			</PersistGate>
-		</Provider>,
-	);
+  root.render(
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <SettingsApp />
+      </PersistGate>
+    </Provider>,
+  );
 });

@@ -1,44 +1,44 @@
 /**
- * Created by piotr.pozniak@thebeaverhead.com on 10/02/2025
+ * Nothing to embed yet — the account is connected but has no published widget
+ * of this type. Replaces src/blockEditor/NoWidgetsPlaceholder/index.js, which
+ * printed "You have no calendar widgets..." next to a button.
+ *
+ * Two ways out, in order: make one, or refresh after publishing one elsewhere.
  */
 
 import React from "react";
-import { Card, CardBody, CardHeader } from "@wordpress/components";
-import AppIcon from "../../adminPanel/components/AppIcon";
-import { __ } from "@wordpress/i18n";
-import AddNewButton from "../../components/AddNewButton";
 import RefreshWidgetsList from "../../components/RefreshWidgetsList";
+import AddNewButton from "../../components/AddNewButton";
+import BlockShell from "../BlockShell";
+import { WidgetsNames } from "../../consts";
+import { CalendarCheck01 } from "../../icons";
 
-/**
- *
- * @param {string} widgetType
- * @returns {Element}
- * @constructor
- */
-const NoWidgetsPlaceholder = ({ widgetType }) => {
+const NoWidgetsPlaceholder = ({ widgetType = "calendar" }) => {
+  const plural = (WidgetsNames[widgetType]?.title || "widgets").toLowerCase();
+  const singular = (
+    WidgetsNames[widgetType]?.singular || "widget"
+  ).toLowerCase();
+
   return (
-    <Card isRounded={false}>
-      <CardHeader>
-        <div className={"rev-block-canvas-placeholder-header"}>
-          <div className={"rev-block-canvas-placeholder-title"}>
-            <span>
-              <AppIcon width={"24"} />
-              {__("Revisual Widget", "revisual")}
-            </span>
-            <RefreshWidgetsList widgetType={widgetType} />
-          </div>
-          <div className={"rev-block-canvas-placeholder-subtitle"}>
-            Select widget which you want to display.
-          </div>
-        </div>
-      </CardHeader>
-      <CardBody>
-        <div className={"rev-block-canvas-no-widgets-container"}>
-          You have no {widgetType.toLocaleLowerCase()} widgets...
+    <BlockShell
+      widgetType={widgetType}
+      hint={"nothing to embed yet"}
+      actions={<RefreshWidgetsList />}
+    >
+      <div className={"rev-blk-state"}>
+        <span className={"rev-blk-state-icon"}>
+          <CalendarCheck01 size={20} />
+        </span>
+        <span className={"rev-blk-state-title"}>No published {plural} yet</span>
+        <span className={"rev-blk-state-text"}>
+          Create a {singular} in Revisual and set its status to published — it
+          shows up here as soon as you refresh.
+        </span>
+        <span className={"rev-blk-state-actions"}>
           <AddNewButton widgetType={widgetType} />
-        </div>
-      </CardBody>
-    </Card>
+        </span>
+      </div>
+    </BlockShell>
   );
 };
 

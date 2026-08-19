@@ -3,42 +3,37 @@ import { fetchWidgets } from "../actions/widgets";
 import { disconnectPlugin } from "../actions/settingsApp";
 
 const initialState = {
-	fetch: false,
-	fetchSuccess: false,
-	fetchError: null,
+  fetch: false,
+  fetchSuccess: false,
+  fetchError: null,
 
-	collection: [],
+  collection: [],
 };
 
 export const widgetsSlice = createSlice({
-	name: "widgets",
+  name: "widgets",
 
-	initialState: {
-		...initialState,
-	},
-	reducers: {},
-	extraReducers: (builder) => {
-		builder
-			.addCase(fetchWidgets.pending, (state, action) => {
-				state.fetch = true;
-				state.fetchSuccess = false;
-				state.fetchError = false;
-			})
-			.addCase(fetchWidgets.fulfilled, (state, action) => {
-				state.fetch = false;
-				state.fetchSuccess = true;
-				state.collection = action.payload || [];
-			})
-			.addCase(fetchWidgets.rejected, (state, action) => {
-				state.fetch = false;
-				state.fetchError = action.payload;
-			});
-		// .addCase(disconnectPlugin.fulfilled, (state, action) => {
-		// 	state.fetch = false;
-		// 	state.fetchSuccess = false;
-		// 	state.collection = [];
-		// });
-	},
+  initialState: {
+    ...initialState,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchWidgets.pending, (state, action) => {
+        state.fetch = true;
+        state.fetchSuccess = false;
+        state.fetchError = false;
+      })
+      .addCase(fetchWidgets.fulfilled, (state, action) => {
+        state.fetch = false;
+        state.fetchSuccess = true;
+        state.collection = action.payload || [];
+      })
+      .addCase(fetchWidgets.rejected, (state, action) => {
+        state.fetch = false;
+        state.fetchError = action.payload;
+      });
+  },
 });
 
 export const widgets = (state) => state.widgets;
