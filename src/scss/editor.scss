@@ -226,6 +226,46 @@ sans-serif;
   pointer-events: none;
 }
 
+.rev-blk-sort {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid $rev-border-secondary;
+  border-radius: 8px;
+  background: $rev-bg-subtle;
+}
+
+.rev-blk .rev-blk-sort-btn {
+  min-height: 0;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  box-shadow: none;
+  font-family: $rev-font;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: $rev-text-tertiary;
+  cursor: pointer;
+
+  &:hover {
+    color: $rev-text-secondary;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px $rev-brand-100;
+  }
+}
+
+.rev-blk .rev-blk-sort-btn_on {
+  background: $rev-surface;
+  box-shadow: $rev-shadow-xs;
+  color: $rev-text-primary;
+}
+
 .rev-blk-count {
   display: flex;
   align-items: center;
@@ -410,6 +450,48 @@ sans-serif;
     box-shadow: 0 0 0 4px $rev-brand-100;
     outline: none;
   }
+}
+
+// Two-up segmented sort. Sits between search and list, aligned right so it
+// reads as a control on the list rather than another primary action.
+.rev-side-sort {
+  display: flex;
+  align-self: flex-end;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid $rev-border-secondary;
+  border-radius: 8px;
+  background: $rev-bg-subtle;
+}
+
+.rev-side .rev-side-sort-btn {
+  min-height: 0;
+  padding: 3px 8px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  box-shadow: none;
+  font-family: $rev-font;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+  color: $rev-text-tertiary;
+  cursor: pointer;
+
+  &:hover {
+    color: $rev-text-secondary;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px $rev-brand-100;
+  }
+}
+
+.rev-side .rev-side-sort-btn_on {
+  background: $rev-surface;
+  box-shadow: $rev-shadow-xs;
+  color: $rev-text-primary;
 }
 
 .rev-side-list {

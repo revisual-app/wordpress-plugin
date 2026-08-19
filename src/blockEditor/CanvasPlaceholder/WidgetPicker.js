@@ -35,6 +35,7 @@ const WidgetPicker = ({ widgetType = "calendar", onSelect }) => {
   const { widgets } = useWidgetsStore();
   const [query, setQuery] = useState("");
   const [template, setTemplate] = useState("");
+  const [sort, setSort] = useState("recent");
   const [expanded, setExpanded] = useState(false);
 
   const templates = AvailableTemplates[widgetType] || [];
@@ -53,8 +54,15 @@ const WidgetPicker = ({ widgetType = "calendar", onSelect }) => {
     const q = query.trim().toLowerCase();
     return available
       .filter((i) => (template ? i.template === template : true))
-      .filter((i) => (q ? (i.name || "").toLowerCase().includes(q) : true));
-  }, [available, query, template]);
+      .filter((i) => (q ? (i.name || "").toLowerCase().includes(q) : true))
+      .sort((a, b) =>
+        sort === "name"
+          ? (a.name || "").localeCompare(b.name || "", undefined, {
+              sensitivity: "base",
+            })
+          : (b.modified || 0) - (a.modified || 0),
+      );
+  }, [available, query, template, sort]);
 
   const shown = expanded ? matches : matches.slice(0, PAGE);
   const hidden = matches.length - shown.length;
@@ -91,6 +99,29 @@ const WidgetPicker = ({ widgetType = "calendar", onSelect }) => {
           </select>
           <ChevronDown size={14} className={"rev-blk-select-caret"} />
         </span>
+
+        <div className={"rev-blk-sort"} role={"group"} aria-label={"Sort"}>
+          <button
+            type={"button"}
+            className={`rev-blk-sort-btn${
+              sort === "recent" ? " rev-blk-sort-btn_on" : ""
+            }`}
+            aria-pressed={sort === "recent"}
+            onClick={() => setSort("recent")}
+          >
+            Recent
+          </button>
+          <button
+            type={"button"}
+            className={`rev-blk-sort-btn${
+              sort === "name" ? " rev-blk-sort-btn_on" : ""
+            }`}
+            aria-pressed={sort === "name"}
+            onClick={() => setSort("name")}
+          >
+            A–Z
+          </button>
+        </div>
 
         <span className={"rev-blk-count"}>
           {widgets.fetch ? <Spinner /> : null}
