@@ -1,30 +1,7 @@
 // Welcome (disconnected) screen — Untitled UI structure, Revisual brand ramp.
 // Replaces the .rev--welcome-* / .rev-welcome-* block in src/scss/admin.scss.
 
-// Revisual brand ramp (authoritative — NOT the Untitled UI placeholder violet)
-$rev-brand-25: #fffaff;
-$rev-brand-50: #fdf6fd;
-$rev-brand-100: #f9ecfb;
-$rev-brand-200: #f2d9f5;
-$rev-brand-300: #eab8e9;
-$rev-brand-600: #b146b3;
-$rev-brand-700: #883388;
-$rev-brand-950: #40123e;
-
-// Untitled UI neutrals (literals the kit's components actually carry)
-$rev-text-primary: #101828;
-$rev-text-secondary: #344054;
-$rev-text-tertiary: #667085;
-$rev-text-quaternary: #98a2b3;
-$rev-border-primary: #d0d5dd;
-$rev-border-secondary: #eaecf0;
-$rev-surface: #ffffff;
-$rev-radius-md: 8px;
-$rev-radius-xl: 12px;
-$rev-shadow-xs: 0 1px 2px rgba(10, 13, 18, 0.05);
-
-$rev-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-sans-serif;
+@use "./variables" as *;
 
 .rev--welcome {
   display: grid;

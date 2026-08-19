@@ -7,6 +7,7 @@
 // Variables ($rev-brand-700 etc.) are declared in _welcome.scss. If that block
 // sits above this one in admin.scss they're already in scope; otherwise lift
 // them to the top of the file.
+@use "./variables" as *;
 
 .rev--footer {
 	display: flex;

@@ -4,7 +4,6 @@
  */
 
 import React from "react";
-import { __experimentalHeading as Heading } from "@wordpress/components";
 import { useMemo } from "@wordpress/element";
 import { useWPSettingsStore } from "../../hooks/useWPSettings";
 import appConfig from "../../config/appConfig";
@@ -60,7 +59,7 @@ const WelcomePage = () => {
 
   return (
     <>
-      <Heading className={"rev--page-heading"}>{appConfig.appName}</Heading>
+      <h1 className={"rev--page-heading"}>{appConfig.appName}</h1>
 
       <div className={"rev--welcome"}>
         <div className={"rev--welcome-main"}>

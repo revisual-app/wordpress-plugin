@@ -3,17 +3,7 @@
 // in src/scss/admin.scss. Uses the variables declared at the top of the welcome
 // block, so that block must come first in the file.
 
-$rev-success-500: #17b26a;
-$rev-warning-500: #f79009;
-$rev-error-500: #f04438;
-$rev-error-600: #d92d20;
-$rev-bg-subtle: #f9fafb;
-// _welcome.scss only declares radius md/xl; the states below need the two other
-// steps from the Untitled UI scale.
-$rev-radius-xs: 4px;
-$rev-radius-lg: 10px;
-$rev-brand-800: #792f78; // hover step for the small text links in error details
-$rev-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+@use "./variables" as *;
 
 .rev--app {
   font-family: $rev-font;
