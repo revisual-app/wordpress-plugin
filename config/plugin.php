@@ -6,9 +6,9 @@ $__REV_CONFIG = [
 	'plugin'              => 'Revisual',
 	'loaderScriptUrl'     => 'https://cdn.my.revisual.io/widgets/loader.min.js',
 	'alertsScriptUrl'     => 'https://cdn.my.revisual.io/widgets/alerts.min.js',
-	'loaderScriptVersion' => '6.13.23',
+	'loaderScriptVersion' => '2026.08.20',
 	'authUrl'             => 'https://my.revisual.io/plugins/auth',
 	'discardTokenUrl'     => 'https://my.revisual.io/plugins/discard-token',
 	'apiUrl'              => 'https://my.revisual.io/api4/',
-	'version'             => '0.2.0',
+	'version'             => '1.0.1',
 ];
