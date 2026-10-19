@@ -1,26 +1,39 @@
-=== Revisual – Event Communication for Google Calendar ===
+=== Revisual – Event Communication for Google Calendar & Outlook ===
 Contributors:      piotrpoz, revisual
-Tags:              google, calendar, events, revisual, embed
+Tags:              events, event calendar, google calendar, outlook calendar, calendar embed
 Tested up to:      7.1
 Stable tag:        1.0.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 6.4
 
-Turn your Google Calendar into a full event communication channel. Revisual connects your calendar to your website, QR codes, emails, and partner sites — automatically, beautifully, and from one source of truth.
+Turn your Google Calendar or Outlook calendar into a full event communication channel: website, QR codes, emails and partner sites, always in sync.
 
 
 == Description ==
 
 A great event still falls flat if the calendar says one thing and the flyer says another. Revisual closes that gap.
 
-Your Google Calendar is already where your events live. Revisual transforms it into a complete event communication system — distributing your programme automatically across your website, printed materials, partner sites, emails, and more. One update in Google Calendar, and every channel stays in sync.
+Your calendar is already where your events live — whether that's Google Calendar or Microsoft Outlook (Microsoft 365). Revisual transforms it into a complete event communication system, distributing your programme automatically across your website, printed materials, partner sites, emails, and more. One update in your calendar, and every channel stays in sync.
 
 = 🎯 The Problem Revisual Solves =
 
 Event information is hard to keep consistent across channels. A time changes, a venue updates, a new session is added — and suddenly your website says one thing, your printed flyer says another, and your email said something else entirely.
 
-Revisual makes your Google Calendar the single source of truth, then handles all the distribution for you. No copy-pasting. No manual updates across five platforms. No events that fall through the cracks.
+Revisual makes your calendar the single source of truth, then handles all the distribution for you. No copy-pasting. No manual updates across five platforms. No events that fall through the cracks.
+
+= 📅 Works With the Calendar You Already Use =
+
+* **Google Calendar** — connect one or more calendars from your Google account.
+* **Microsoft Outlook (Microsoft 365)** — connect your Outlook calendar and keep managing events exactly where your team already does.
+
+Your team keeps working in the calendar they know. Revisual handles the publishing.
+
+= 🏢 Built for Microsoft 365 Organisations Too =
+
+Schools, universities, councils, associations and hotel groups often run on Microsoft 365. Until now, getting Outlook events onto a public website meant publishing the calendar as a plain HTML page, pasting an iframe, or copying events into the website by hand.
+
+With Revisual, you connect Outlook once and your events appear on WordPress as branded, mobile-friendly event calendars — plus QR codes, email embeds and hosted pages — all kept up to date automatically.
 
 = 🌐 One Calendar. Every Channel. =
 
@@ -34,8 +47,9 @@ Revisual connects your calendar to the channels your audience actually uses:
 
 = ✨ Features =
 
-✔ Sync with Google Calendar & other calendar sources
-✔ Automatic real-time updates — seconds after you make a change
+✔ Connect Google Calendar
+✔ Connect Microsoft Outlook (Microsoft 365) calendars
+✔ Automatic updates whenever you change an event in your calendar
 ✔ Unlimited event widgets
 ✔ Gutenberg block + shortcode embedding
 ✔ Fully customizable widget builder (250+ options)
@@ -48,13 +62,13 @@ Revisual connects your calendar to the channels your audience actually uses:
 ✔ Automatic timezone handling
 ✔ Zero data stored in WordPress (API-based, lightweight)
 ✔ End-user i18n built-in
-✔ ICS and iCal support for calendar subscriptions
+✔ ICS and iCal subscriptions — visitors can add your events to Google, Apple or Outlook calendars
 ✔ Event alerts with optional countdown timers
 ✔ Social sharing & direct event links built in
 
 = 🔧 How Revisual Works =
 
-1. Connect your Google Calendar to Revisual.
+1. Connect your Google Calendar or Outlook calendar to Revisual.
 2. Design your widget using the visual builder — no coding needed.
 3. Connect your WordPress site.
 4. Embed via block or shortcode.
@@ -75,10 +89,11 @@ Revisual is designed for anyone who runs events and wants their audience to alwa
 * **Hotels & hospitality** — Communicate your events programme to guests before arrival, on-property, and after checkout. Turn your event calendar into a differentiator, not an afterthought.
 * **Event creators** — Share events widely, drive attendees back to your website for details, registration, and updates.
 * **Coaches, trainers & educators** — Promote classes, workshops, and webinars from a single calendar. Keep participants informed across email, your website, and social.
+* **Schools & universities** — Publish open days, performances and public events from the Google or Microsoft 365 calendars staff already use.
 * **Non-profits & community organisations** — Keep members informed without manual work. One update reaches every channel automatically.
 * **Clubs & associations** — Make meetings, sessions, and gatherings easy to discover and attend.
 * **Creative professionals** — Showcase performances, exhibitions, and shows across multiple platforms. QR codes on printed materials stay live even after the programme changes.
-* **Multi-site publishers & agencies** — Manage event communication across multiple client sites from one place, keeping every channel consistent and up to date.
+* **Multi-site publishers & agencies** — Manage event communication across multiple client sites from one place, whether each client runs Google Calendar or Outlook.
 * **Municipalities & cultural institutions** — Run city-wide or institution-wide event campaigns from a single shared calendar, reaching audiences across all your channels.
 
 = 🔒 Performance & Security =
@@ -93,8 +108,8 @@ All connections are encrypted. No visitor data is collected. No cookies are trac
 
 We're actively developing new features, including:
 
-* More calendar integrations
 * RSVP functionality
+* More calendar integrations beyond Google Calendar and Outlook
 
 
 = 💡 Feature Requests =
@@ -106,8 +121,9 @@ Share feature ideas with us: [Revisual Help Center](https://help.revisual.io/en/
 
 = Minimum Requirements =
 
-* WordPress 6.2 or greater
+* WordPress 6.4 or greater
 * PHP version 7.2 or greater
+* A Revisual account connected to Google Calendar or Microsoft Outlook (free plan available)
 
 = Installation =
 
@@ -146,6 +162,8 @@ Here's exactly what happens and why:
   - Fully compliant with EU privacy regulations (GDPR)
   - Your WordPress site data is only used for connecting and syncing widgets
 
+The plugin itself never connects to Google or Microsoft. Your calendar connection is set up and managed in your Revisual account, not in WordPress.
+
 This setup allows Revisual to function as a lightweight, performance-friendly layer: events are served directly from Revisual servers, keeping your website fast while enabling sharing across multiple sites, emails, and other channels.
 
 This service is provided by "Revisual": [Terms of Service](https://revisual.io/terms-of-service) and [Privacy Policy](https://revisual.io/privacy).
@@ -157,9 +175,17 @@ This service is provided by "Revisual": [Terms of Service](https://revisual.io/t
 
 YES! Revisual is completely free to use. You don't need a paid plan to get started — all essential features are included in the free plan.
 
+= Which calendars can I connect? =
+
+Google Calendar and Microsoft Outlook (Microsoft 365). Choose your calendar when you set up your Revisual account. The WordPress plugin, widgets, QR codes and hosted pages work the same way whichever calendar you use.
+
+= I manage events in Outlook. Can I show them on my WordPress site? =
+
+Yes. Connect your Outlook calendar to Revisual, design a widget, and embed it with the Revisual block or shortcode. When you add, move or cancel an event in Outlook, your website updates automatically — no publishing the calendar as HTML, no iframes, no copying events by hand.
+
 = How does the plugin work exactly? =
 
-Revisual does not store any event data on your WordPress site. It securely connects to your Revisual account and fetches events from there. Manage your events in Google Calendar, and they automatically update everywhere Revisual is embedded.
+Revisual does not store any event data on your WordPress site. It securely connects to your Revisual account and fetches events from there. Manage your events in Google Calendar or Outlook, and they automatically update everywhere Revisual is embedded.
 
 = Why does Revisual store data on its server instead of WordPress? =
 
@@ -175,15 +201,11 @@ Yes. The Revisual widget builder gives you full control over colors, fonts, layo
 
 = Can I embed widgets on multiple websites? =
 
-Yes. You can embed your widgets on multiple pages, posts, and across different websites. All of them update automatically whenever you make a change in Google Calendar.
+Yes. You can embed your widgets on multiple pages, posts, and across different websites. All of them update automatically whenever you make a change in your calendar.
 
 = Does Revisual slow down my site? =
 
 No. Revisual is lightweight and only renders events on the front-end. Shortcodes or blocks convert into embeddable code without impacting WordPress performance, regardless of how many visitors you have.
-
-= What calendars are supported besides Google Calendar? =
-
-Google Calendar is fully supported. We welcome feedback and may add support for other calendar platforms based on user requests.
 
 = Can I use Revisual for printed materials? =
 
@@ -203,7 +225,7 @@ Yes. Revisual outputs HTML + CSS, so developers can add custom styles as needed.
 
 = How often does syncing happen? =
 
-Events from Google Calendar are synced automatically — usually within seconds of a change being made.
+Changes in your calendar are synced automatically — for Google Calendar, usually within seconds of a change being made. You can also trigger a manual sync from your Revisual dashboard at any time.
 
 = Can I see how my events are performing? =
 
@@ -213,12 +235,12 @@ Yes. Revisual includes an Event Engagement report that shows impressions, views,
 == Screenshots ==
 
 1. Calendar Template Builder - Preview your events in real-time while customizing layout, colors, fonts, and event styles using the design panel.
-2. Event Details Modal - Click any event to see full details in a sleek modal. All content — title, description, time, location, and more — is controlled directly from Google Calendar.
+2. Event Details Modal - Click any event to see full details in a sleek modal. All content — title, description, time, location, and more — is controlled directly from your Google Calendar or Outlook calendar.
 3. Event Engagement Report - Track impressions, views, and engagement ratio for every event, broken down by traffic source (widget, direct link, QR code, email).
-4. Easy Event Sharing - End users can share events via QR codes, social media, or direct links. All sharing options are generated automatically from your Google Calendar event details.
-5. ICS / iCal Subscriptions - Allow visitors to subscribe to your events with ICS/iCal feeds. Events sync automatically to their personal calendars, always sourced from your Google Calendar.
-6. Event Filters - Filter events by calendar, location, or tags. All filter options are controlled from your Google Calendar.
-7. Event Alerts - Display upcoming events as banners with optional countdown timers, always synced from your Google Calendar.
+4. Easy Event Sharing - End users can share events via QR codes, social media, or direct links. All sharing options are generated automatically from your calendar's event details.
+5. ICS / iCal Subscriptions - Allow visitors to subscribe to your events with ICS/iCal feeds. Events sync automatically to their personal calendars, always sourced from your calendar.
+6. Event Filters - Filter events by calendar, location, or tags, all driven by your calendar data.
+7. Event Alerts - Display upcoming events as banners with optional countdown timers, always synced from your calendar.
 8. WordPress Admin Dashboard - Clean, intuitive settings panel for configuring widgets, connecting calendars, and managing plugin options.
 9. Gutenberg Block Preview - See your Revisual event widget live in the WordPress editor before publishing.
 
@@ -228,6 +250,10 @@ Revisual updates are fully backward compatible. There are no breaking changes in
 
 
 == Changelog ==
+
+= 1.0.2 | 19 Oct 2026 =
+* New: Microsoft Outlook (Microsoft 365) is now supported as a calendar source, alongside Google Calendar.
+* Readme: updated descriptions, FAQ and screenshots captions for Outlook support.
 
 = 0.2.7 | 18 Aug 2026 =
 * New: Event Engagement report — impressions, views, and engagement ratio per event, broken down by traffic source.
