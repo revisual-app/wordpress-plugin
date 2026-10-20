@@ -10,5 +10,5 @@ $__REV_CONFIG = [
 	'authUrl'             => 'https://my.revisual.io/plugins/auth',
 	'discardTokenUrl'     => 'https://my.revisual.io/plugins/discard-token',
 	'apiUrl'              => 'https://my.revisual.io/api4/',
-	'version'             => '1.0.2',
+	'version'             => '1.0.3',
 ];
